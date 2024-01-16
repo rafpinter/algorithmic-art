@@ -1,33 +1,22 @@
-let stroke_col = 255;
+let stroke_col = 200;
 
 function setup() {
     wd = 580;
     ht = 750;
     createCanvas(wd, ht);
-
-    let background_a = random(0, 255);
-    let background_b = random(0, 255);
-    let background_c = random(0, 255);
-
-    c1 = color(stroke_col);
-    c2 = color(background_a, background_b, background_c);
-
-    for (let y = 0; y < height; y++) {
-        n = map(y, 0, height, 0, 1);
-        let newc = lerpColor(c1, c2, n);
-        stroke(newc);
-        line(0, y, width, y);
-    }
+    background(20);
 }
 
 function draw() {
-    let max = 2;
-    let i_max = random(3, max);
-    let j = random(3, max);
-    for (let i = 1; i < i_max; i++)
-        graphFunction(x => sin(i * x + i) * cos(x + j), 0, 2 * PI);
-    // graphFunction(x => sin(i * x + i) ^ 2 * cos(x + j), 0, 2 * PI);
-    // graphFunction(x => sin(i * x + i ^ 2) * cos(x + j), 0, 2 * PI);
+    let min = 2; // 2
+    let max = 3; // 3
+    let a = 0.5; // 0.5
+    let b = 3; // 3
+    let i_max = random(min, max);
+    let j = random(min, max);
+    for (let i = 1; i < i_max; i++) {
+        graphFunction(x => a * x ** b + sin(i * x ** b), 0, 2 * PI);
+    }
     noLoop();
 
 }
@@ -35,7 +24,7 @@ function draw() {
 // not my code from here:
 // credits to https://www.youtube.com/watch?v=Q9Gje2vh22Q
 function graphFunction(fn, x1, x2) {
-    let o = getFunctionValues(fn, x1, x2, 10000);
+    let o = getFunctionValues(fn, x1, x2, 1000);
 
     let values = o.values;
     let y1 = o.min;
@@ -46,7 +35,7 @@ function graphFunction(fn, x1, x2) {
 
 function drawGraph(values, x1, x2, y1, y2) {
     stroke(stroke_col);
-    strokeWeight(20);
+    strokeWeight(1);
 
     for (let i = 0; i < values.length - 1; i++) {
         let x = values[i].x;

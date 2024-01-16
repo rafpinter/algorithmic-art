@@ -1,5 +1,5 @@
 function setup() {
-    var wd = 580;
+    var wd = 575;
     var ht = 750;
     createCanvas(wd, ht);
 }

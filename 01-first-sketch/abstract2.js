@@ -7,7 +7,8 @@ function setup() {
 function draw() {
     // Dark background
     background(0);
-    let padding = 100;
+    let padding = 10;
+
     let a = random(padding, width - padding);
     let c = random(padding, width - padding);
     let e = random(padding, width - padding);
