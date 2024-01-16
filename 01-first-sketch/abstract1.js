@@ -9,14 +9,14 @@ function draw() {
     background(0);
 
     // Configuring the line
-    strokeWeight(1);
+    strokeWeight(2);
     stroke(255, 204, 0);
 
     // Testing foor loop
     line(100, 100, 500, 100);
     for (let posX = 0; posX < 5; posX++) {
         for (let posY = 0; posY < 5; posY++) {
-            circle(posX * 25, posY * 25, 10);
+            circle(posX * 25 + 100, posY * 25 + 150, 10);
         }
     }
 
