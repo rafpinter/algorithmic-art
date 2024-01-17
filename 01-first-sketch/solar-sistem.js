@@ -12,7 +12,7 @@ var axis_color = 100
 var division = 10
 
 // motion configs
-var earth_velocity = 0.01;
+var earth_velocity = 0.05;
 var angles = [];
 
 var speeds = [

@@ -10,22 +10,21 @@ function setup() {
 function draw() {
     let min = 2; // 2
     let max = 3; // 3
-    let a = 1; // 1 | 0.5
+    let a = 0.1; // 1 | 0.5
     let b = 2; // 2 | 3
     let i_max = random(min, max);
     let j = random(min, max);
     for (let i = 1; i < i_max; i++) {
         graphFunction(x => a * x ** b + sin(i * x ** b), 0, 3 * PI);
     }
-
     noLoop();
-
 }
 
-// not my code from here:
-// credits to https://www.youtube.com/watch?v=Q9Gje2vh22Q
+
+// Not my code from here:
+// Credits to https://www.youtube.com/watch?v=Q9Gje2vh22Q
 function graphFunction(fn, x1, x2) {
-    let o = getFunctionValues(fn, x1, x2, 1000);
+    let o = getFunctionValues(fn, x1, x2, 5000); // genuary jan 16
 
     let values = o.values;
     let y1 = o.min;

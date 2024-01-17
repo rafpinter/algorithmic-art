@@ -1,5 +1,5 @@
 // circle colors
-let fill_color_1 = 230;
+let fill_color_1 = 250;
 let fill_color_2 = 12;
 let fill_color_3 = 30;
 
