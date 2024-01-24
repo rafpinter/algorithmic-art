@@ -1,0 +1,68 @@
+Rubiks cube:
+-----------
+// Cube dimensions
+let dim_cube = 3; // 5
+
+// Grid
+let ext_space = 50;
+let int_space = 20; // min: 5
+
+// Objects
+let round_edges = 5;
+let random_stroke = false;
+let transp = 250;
+let stroke_weight = 0;
+
+// Randomness
+let random_sizes = false;
+let inc_limit = 500;
+let no_stroke = false;
+let random_objects = false;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+
+
+Random geometric forms and random sizes:
+----------------------------------------
+// Cube dimensions
+let dim_cube = 2; // 5
+
+// Grid
+let ext_space = 50;
+let int_space = 10; // min: 5
+
+// Objects
+let round_edges = 1;
+let random_stroke = true;
+let transp = 150;
+let stroke_weight = 6;
+
+// Randomness
+let random_sizes = true;
+let inc_limit = 500;
+let no_stroke = false;
+let random_objects = true;
+let object_number = 2; // Square:0 | Circle:1 | Triangle:2
+
+
+Random geometric forms and same sizes:
+--------------------------------------
+// Cube dimensions
+let dim_cube = 4; // 5
+
+// Grid
+let ext_space = 50;
+let int_space = 20; // min: 5
+
+// Objects
+let round_edges = 0;
+let random_stroke = true;
+let transp = 250;
+let stroke_weight = 5;
+
+// Randomness
+let random_sizes = false;
+let inc_limit = 500;
+let no_stroke = false;
+let random_objects = true;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
