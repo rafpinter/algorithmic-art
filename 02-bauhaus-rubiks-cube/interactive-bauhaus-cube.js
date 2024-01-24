@@ -1,26 +1,31 @@
+// Global variables
 let wd = 600;
 let ht = 600;
 let ext_space = 40;
 let int_space = 10;
 let round_edges = 10;
 let color_array = [];
-let background_color = 220;
+let background_color = 230;
 let sq_size = (wd - ext_space * 2 - int_space * 2) / 3;
 var cube;
 
+// Setup function
 function setup() {
     createCanvas(wd, ht);
     noLoop();
-    // frameRate(0.75);
+    // frameRate(0.08);
     color_array = [
         color(157, 39, 25), // red
         color(21, 64, 132), // blue
+        color(34, 34, 34), // black
         color(215, 180, 24), // yellow
         color(237, 237, 237), // white
-        color(34, 34, 34) // black
+        color(237, 237, 237), // white
+        color(237, 237, 237), // white
     ];
 }
 
+// Draw function
 function draw() {
     background(background_color);
     let dim_cube = 3; // 3x3 cube
@@ -30,6 +35,7 @@ function draw() {
     }
 }
 
+// Interactive functino
 function mousePressed(event) {
     if (event.button === 0) {
         let x = Math.floor(mouseX / 200);
@@ -48,6 +54,7 @@ function mousePressed(event) {
     }
 }
 
+// Cube data structure
 class Cube {
     constructor(shape, ext_space, int_space, round_edges, color_array, sq_size) {
         this.shape = shape;
@@ -69,6 +76,7 @@ class Cube {
     }
 }
 
+// Squares data structure
 class Square {
     constructor(x, y, size, round_corner, color_array, ext_space, int_space) {
         this.x = x;
