@@ -6,12 +6,12 @@ let round_edges = 10;
 let color_array = [];
 let sq_space;
 
-let background_color = 220;
+let background_color = 225;
 
 function setup() {
     createCanvas(wd, ht);
-    noLoop();
-    // frameRate(0.75);
+    // noLoop();
+    frameRate(0.75);
 
     sq_space = (wd - ext_space * 2 - int_space * 2) / 3;
 
