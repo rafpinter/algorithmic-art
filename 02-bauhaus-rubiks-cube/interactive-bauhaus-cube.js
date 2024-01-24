@@ -1,53 +1,53 @@
 // Global variables
-let wd = 600;
-let ht = 600;
+let wd = 800;
+let ht = 800;
+let dim_cube = 5; // 5
 let ext_space = 40;
 let int_space = 10;
 let round_edges = 10;
 let color_array = [];
-let background_color = 230;
-let sq_size = (wd - ext_space * 2 - int_space * 2) / 3;
+let background_color = 240;
+let sq_size = (wd - ext_space * 2 - int_space * (dim_cube - 1)) / dim_cube;
 var cube;
 
 // Setup function
 function setup() {
     createCanvas(wd, ht);
     noLoop();
-    // frameRate(0.08);
+    // frameRate(0.6);
+
+    // probabilistic colors
     color_array = [
         color(157, 39, 25), // red
         color(21, 64, 132), // blue
         color(34, 34, 34), // black
         color(215, 180, 24), // yellow
-        color(237, 237, 237), // white
-        color(237, 237, 237), // white
-        color(237, 237, 237), // white
+        color(240, 240, 240), // white
+        color(240, 240, 240), // white
+        color(240, 240, 240), // white
+        color(240, 240, 240), // white
+        color(240, 240, 240), // white
+        color(240, 240, 240), // white
+        color(240, 240, 240), // white
     ];
 }
 
 // Draw function
 function draw() {
     background(background_color);
-    let dim_cube = 3; // 3x3 cube
+    ; // 3x3 cube
     cube = new Cube(dim_cube, ext_space, int_space, round_edges, color_array, sq_size);
     for (let i = 0; i < dim_cube * dim_cube; i++) {
         cube.squares[i].display();
     }
 }
 
-// Interactive functino
+// Interactive function
 function mousePressed(event) {
     if (event.button === 0) {
-        let x = Math.floor(mouseX / 200);
-        let y = Math.floor(mouseY / 200);
-        if (x == 1) {
-            1
-            y += 2;
-        }
-        if (x == 2) {
-            y += 4;
-        }
-        cube.squares[x + y].redraw_square();
+        let x = Math.floor(mouseX / (wd / dim_cube));
+        let y = Math.floor(mouseY / (wd / dim_cube));
+        cube.squares[dim_cube * x + y].redraw_square();
     }
     if (event.button === 1 || event.button === 2) {
         redraw();

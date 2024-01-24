@@ -1,12 +1,12 @@
-let wd = 500;
-let ht = 500;
+let wd = 600;
+let ht = 600;
 let ext_space = 40;
 let int_space = 10;
 let round_edges = 10;
 let color_array = [];
 let sq_space;
 
-let background_color = 200;
+let background_color = 230;
 
 function setup() {
     createCanvas(wd, ht);
