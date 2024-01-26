@@ -66,3 +66,26 @@ let inc_limit = 500;
 let no_stroke = false;
 let random_objects = true;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+
+Final config:
+------------
+// Cube dimensions
+let dim_cube = 3; // 5
+
+// Grid
+let ext_space = 100;
+let int_space = 50; // min: 5
+
+// Objects
+let round_edges = 0;
+let random_stroke = true;
+let transp = 220;
+let stroke_weight = 10; // 10
+
+// Randomness
+let random_sizes = true;
+let inc_limit = 300;
+let no_stroke = false;
+let random_objects = true;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
