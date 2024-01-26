@@ -24,22 +24,20 @@ let dim_cube = 3; // 5
 
 // Grid
 let ext_space = 50;
-let int_space = 20; // min: 5
+let int_space = 10; // min: 5
 
 // Objects
-let round_edges = 5;
-let random_stroke = false;
+let round_edges = 0;
 let transp = 250;
-let stroke_weight = 0;
+let stroke_weight = 5;
 
 // Randomness
-let random_sizes = false;
-let inc_limit = 500;
+let random_sizes = true;
+let inc_limit = 250;
 let no_stroke = false;
-let random_objects = false;
+let random_stroke = true;
+let random_objects = true;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
-
-
 // ---------------------
 
 // Global variables
@@ -57,11 +55,20 @@ function setup() {
 
     // probabilistic colors
     color_array = [
-        color(157, 39, 25, transp), // red
-        color(21, 64, 132, transp), // blue
+        color(166, 41, 13, transp), // red
+        color(4, 119, 191, transp), // blue
         color(34, 34, 34, transp), // black
-        color(215, 180, 24, transp), // yellow
+        color(242, 183, 5, transp), // yellow
+        color(background_color, transp), // white
+        color(background_color, transp), // white
+        color(background_color, transp), // white
+        // color(background_color, transp), // white
+        // color(background_color, transp), // white
+        // color(background_color), // white
         color(background_color), // white
+        // color(background_color), // white
+        // color(background_color), // white
+        // color(background_color), // white
     ];
     cube = new Cube(dim_cube, ext_space, int_space, round_edges, color_array, sq_size);
 }
@@ -71,7 +78,7 @@ function draw() {
     background(background_color);
     strokeWeight(stroke_weight);
     for (let i = 0; i < cube.objects.length; i++) {
-        cube.objects[i].display(); // Changed from 'cube.squares[i]' to 'cube.objects[i]'
+        cube.objects[i].display();
     }
 }
 
@@ -79,10 +86,10 @@ function draw() {
 function mousePressed(event) {
     if (event.button === 0) {
         let x = Math.floor(mouseX / (wd / dim_cube));
-        let y = Math.floor(mouseY / (wd / dim_cube));
+        let y = Math.floor(mouseY / (ht / dim_cube));
         cube.objects[dim_cube * x + y].redraw_object();
     }
-    if (event.button === 1 || event.button === 2) {
+    if (event.button === 1) {
         redraw();
     }
 }
@@ -110,6 +117,7 @@ class Cube {
                 else {
                     randint = object_number;
                 }
+                console.log(randint);
 
                 if (randint === 0) {
                     // push square
@@ -137,7 +145,10 @@ class GeometricForm {
         this.color_array = color_array;
         this.ext_space = ext_space;
         this.int_space = int_space;
+
         this.dimensions();
+        this.fill_object();
+        this.object_stroke();
     }
 
     dimensions() {
@@ -145,28 +156,41 @@ class GeometricForm {
         this.xmax = this.xmin + this.size;
         this.ymin = this.ext_space + this.y * (this.size + this.int_space)
         this.ymax = this.ymin + this.size;
+    }
 
+    fill_object() {
         this.fill_color = random(this.color_array);
+    }
+
+    object_stroke() {
+        if (no_stroke == false) {
+            stroke(0);
+        }
+        else {
+            noStroke();
+        }
     }
 
     redraw_object() {
         this.fill_color = random(this.color_array);
-        this.display();
+        if (this.fill_color != color(background_color, transp)) {
+            this.display();
+        }
     }
 }
 
 
 class Circle extends GeometricForm {
     display() {
-        if (random_stroke) {
-            noStroke();
-        }
-
+        // Randomness
+        // if (random_stroke || no_stroke == true) {
+        //     noStroke();
+        // }
         let inc = 0;
         if (random_sizes) {
             inc = random(-inc_limit, inc_limit);
         }
-
+        // Painting object
         fill(this.fill_color);
         circle(
             this.xmin + this.size / 2,
@@ -178,52 +202,50 @@ class Circle extends GeometricForm {
 
 class Triangle extends GeometricForm {
     display() {
-        fill(this.fill_color);
+        // Triangle points
+        let x1, y1, x2, y2, x3, y3;
 
-        // controling stroke
-        if (no_stroke == false) {
-            stroke(0);
+        // Default triangle        
+        x1 = this.xmin;
+        y1 = this.ymax;
+        x2 = this.xmax;
+        y2 = this.ymax;
+        x3 = (this.xmin + this.xmax) / 2;
+        y3 = this.ymin;
+
+        // Declaring randint before using it
+        let randint = floor(random(3));
+
+        // Other side
+        if (randint === 1) {
+            y1 = this.ymin;
+            y2 = this.ymin;
+            x3 = (this.xmin + this.xmax) / 2;
+            y3 = this.ymax;
         }
-        else {
+        // Other side
+        else if (randint === 2) {
+            y1 = this.ymin;
+            x2 = this.xmin;
+            x3 = this.xmax;
+            y3 = (this.ymin + this.ymax) / 2;
+        }
+
+        // Controling stroke
+        if (random_stroke || !no_stroke) {
             noStroke();
         }
 
-        let randint = floor(random(3));
-
-        if (randint === 0) {
-            if (random_stroke) {
-                noStroke();
-            }
-            triangle(
-                this.xmin,
-                this.ymax,
-                this.xmax,
-                this.ymax,
-                (this.xmin + this.xmax) / 2,
-                this.ymin
-            );
-        }
-        else if (randint === 1) {
-            triangle(
-                this.xmin,
-                this.ymin,
-                this.xmax,
-                this.ymin,
-                (this.xmin + this.xmax) / 2,
-                this.ymax,
-            );
-        }
-        else if (randint === 2) {
-            triangle(
-                this.xmin,
-                this.ymin,
-                this.xmin,
-                this.ymax,
-                this.xmax,
-                (this.ymin + this.ymax) / 2
-            );
-        }
-
+        // Displaying figure
+        fill(this.fill_color);
+        triangle(
+            x1,
+            y1,
+            x2,
+            y2,
+            x3,
+            y3
+        );
     }
 }
 
@@ -231,12 +253,7 @@ class Triangle extends GeometricForm {
 // Squares data structure
 class Square extends GeometricForm {
     display() {
-        if (no_stroke == false) {
-            stroke(0);
-        }
-        else {
-            noStroke();
-        }
+
         fill(this.fill_color);
 
         let inc = 0;
@@ -245,14 +262,14 @@ class Square extends GeometricForm {
         }
 
         if (round_edges == 0) {
-            square(
+            rect(
                 this.xmin,
                 this.ymin,
                 this.size + inc,
             );
         }
         else {
-            square(
+            rect(
                 this.xmin,
                 this.ymin,
                 this.size + inc,
