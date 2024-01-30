@@ -1,91 +1,259 @@
 Rubiks cube:
 -----------
 // Cube dimensions
-let dim_cube = 3; // 5
+let dim_cube = 3;
 
-// Grid
-let ext_space = 50;
-let int_space = 20; // min: 5
+// Objects Grid
+let ext_space = 100;
+let int_space = 10;
 
-// Objects
-let round_edges = 5;
-let random_stroke = false;
-let transp = 250;
+// Objects perimeter
+let round_edges = 10;
+let no_stroke = true;
 let stroke_weight = 0;
+let stroke_color = 0;
 
-// Randomness
+// Object color
+let transp = 400;
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 1;
+let max_forms_triangle = 1;
+let max_forms_circles = 1;
+
+// Objects Randomness
 let random_sizes = false;
-let inc_limit = 500;
-let no_stroke = false;
+let inc_limit = 300;
+let random_stroke = true;
 let random_objects = false;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 3;
+
+
+
+
+
 
 
 
 Random geometric forms and random sizes:
 ----------------------------------------
 // Cube dimensions
-let dim_cube = 2; // 5
+let dim_cube = 3;
 
-// Grid
-let ext_space = 50;
-let int_space = 10; // min: 5
-
-// Objects
-let round_edges = 1;
-let random_stroke = true;
-let transp = 150;
-let stroke_weight = 6;
-
-// Randomness
-let random_sizes = true;
-let inc_limit = 500;
-let no_stroke = false;
-let random_objects = true;
-let object_number = 2; // Square:0 | Circle:1 | Triangle:2
-
-
-Random geometric forms and same sizes:
---------------------------------------
-// Cube dimensions
-let dim_cube = 4; // 5
-
-// Grid
-let ext_space = 50;
-let int_space = 20; // min: 5
-
-// Objects
-let round_edges = 0;
-let random_stroke = true;
-let transp = 250;
-let stroke_weight = 5;
-
-// Randomness
-let random_sizes = false;
-let inc_limit = 500;
-let no_stroke = false;
-let random_objects = true;
-let object_number = 0; // Square:0 | Circle:1 | Triangle:2
-
-
-Final config:
-------------
-// Cube dimensions
-let dim_cube = 3; // 5
-
-// Grid
+// Objects Grid
 let ext_space = 100;
-let int_space = 50; // min: 5
+let int_space = 10;
 
-// Objects
+// Objects perimeter
 let round_edges = 0;
-let random_stroke = true;
-let transp = 220;
-let stroke_weight = 10; // 10
+let no_stroke = false;
+let stroke_weight = 4;
+let stroke_color = 0;
 
-// Randomness
+// Object color
+let transp = 200;
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 1;
+let max_forms_triangle = 1;
+let max_forms_circles = 1;
+
+// Objects Randomness
 let random_sizes = true;
 let inc_limit = 300;
-let no_stroke = false;
+let random_stroke = true;
 let random_objects = true;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 5;
+
+
+
+
+
+// Multiple objective
+// --------------------
+
+// Cube dimensions
+let dim_cube = 3;
+
+// Objects Grid
+let ext_space = 100;
+let int_space = 10;
+
+// Objects perimeter
+let round_edges = 0;
+let no_stroke = false;
+let stroke_weight = 0.7;
+let stroke_color = 0;
+
+// Object color
+let transp = 200;
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 70;
+let max_forms_triangle = 70;
+let max_forms_circles = 70;
+
+// Objects Randomness
+let random_sizes = true;
+let inc_limit = 300;
+let random_stroke = true;
+let random_objects = true;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 5;
+
+// Text
+let add_text = true;
+
+
+
+
+Square projections:
+-------------------
+// Cube dimensions
+let dim_cube = 10;
+
+// Objects Grid
+let ext_space = 100;
+let int_space = 10;
+
+// Objects perimeter
+let round_edges = 0;
+let no_stroke = false;
+let stroke_weight = 0;
+let stroke_color = 0;
+
+// Object color
+let transp = 500;
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 10;
+let max_forms_triangle = 10;
+let max_forms_circles = 10;
+
+// Objects Randomness
+let random_sizes = true;
+let inc_limit = 100;
+let random_stroke = true;
+let random_objects = false;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 5;
+
+// Text
+let add_text = true;
+
+// Background
+let mode = "random_triagles";
+let r = 237;
+let g = 237;
+let b = 237;
+
+
+
+
+
+
+Random triangles:
+------------
+// Cube dimensions
+let dim_cube = 20;
+
+// Objects Grid
+let ext_space = 100;
+let int_space = 0;
+
+// Objects perimeter
+let round_edges = 0;
+let no_stroke = false;
+let stroke_weight = 0;
+let stroke_color = 0;
+
+// Object color
+let transp = 500;
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 1;
+let max_forms_triangle = 1;
+let max_forms_circles = 1;
+
+// Objects Randomness
+let random_sizes = true;
+let inc_limit = 200;
+let random_stroke = true;
+let random_objects = false;
+let object_number = 2; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 5;
+
+// Text
+let add_text = true;
+
+// Background
+let mode = "white";
+let r = 110;// 237; // 110
+let g = 187;// 237; // 187
+let b = 222;// 237; // 222
+
+
+
+
+
+
+Ghost Bauhaus:
+--------------
+
+// Cube dimensions
+let dim_cube = 8;
+
+// Objects Grid
+let ext_space = 100;
+let int_space = 10;
+
+// Objects perimeter
+let round_edges = 0;
+let no_stroke = false;
+let stroke_weight = 0;
+let stroke_color = 0;
+
+// Object color
+let transp = 2;
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 70;
+let max_forms_triangle = 70;
+let max_forms_circles = 70;
+
+// Objects Randomness
+let random_sizes = true;
+let inc_limit = 200;
+let random_stroke = true;
+let random_objects = true;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 5;
+
+// Text
+let add_text = true;
+
+// Background
+let mode = "dark";
+let r = 237; // 110
+let g = 237; // 187
+let b = 237; // 19
