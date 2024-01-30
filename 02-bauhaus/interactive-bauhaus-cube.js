@@ -10,7 +10,6 @@ from: https://filmlifestyle.com/what-is-bauhaus/
 What if I:
 - recreate my rubik's cube in a bauhaus style?
 - can make my cube bigger?
-- use probability to remove some objects?
 - change the objects and their sizes randomly?
 - change the transparancy?
 - remove some objects and add random strokes?
@@ -23,9 +22,8 @@ Rafaela Pinter
 
 // Playground variables
 // --------------------
-
 // Cube dimensions
-let dim_cube = 10;
+let dim_cube = 3;
 
 // Objects Grid
 let ext_space = 100;
@@ -34,7 +32,7 @@ let int_space = 10;
 // Objects perimeter
 let round_edges = 0;
 let no_stroke = false;
-let stroke_weight = 0;
+let stroke_weight = 0; // 0
 let stroke_color = 0;
 
 // Object color
@@ -42,15 +40,15 @@ let transp = 40;
 let no_fill = false;
 
 // Objects repetition
-let max_forms_square = 10;
-let max_forms_triangle = 10;
-let max_forms_circles = 10;
+let max_forms_square = 70;
+let max_forms_triangle = 70;
+let max_forms_circles = 70;
 
 // Objects Randomness
 let random_sizes = true;
-let inc_limit = 100;
+let inc_limit = 300;
 let random_stroke = true;
-let random_objects = false;
+let random_objects = true;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
 
 // Hidden objects
@@ -83,12 +81,12 @@ function setup() {
 
     // Probabilistic colors
     color_array = [
-        // color(157, 39, 25, transp), // red
-        // color(21, 64, 132, transp), // blue
-        // color(215, 180, 24, transp), // yellow
+        color(157, 39, 25, transp), // red
+        color(21, 64, 132, transp), // blue
+        color(215, 180, 24, transp), // yellow
         // color(237, 237, 237, transp), // white
-        color(34, 34, 34, transp), // black
-        // color(249, 91, 19), // orange
+        // color(34, 34, 34, transp), // black
+        // color(249, 91, 19, transp), // orange
         // color(245, 245, 245), // white no transp
     ];
 
@@ -104,7 +102,7 @@ function setup() {
 // Draw function
 function draw() {
     if (mode == "dark") {
-        r = 40; g = 40; b = 40;
+        r = 50; g = 50; b = 50;
     }
     else if (mode == "random") {
         r = random(0, 255); g = random(0, 255); b = random(0, 255);
@@ -379,5 +377,5 @@ class Square extends GeometricForm {
 
 
 /*
-the figures, I don't know. but the code surely is.
+maybe the code is also bauhaus?
 */
