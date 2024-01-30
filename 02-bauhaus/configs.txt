@@ -21,6 +21,7 @@ let no_fill = false;
 let max_forms_square = 1;
 let max_forms_triangle = 1;
 let max_forms_circles = 1;
+let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = false;
@@ -36,7 +37,7 @@ let max_random_number = 3;
 let add_text = true;
 
 // Background
-let mode = "random_triagles";
+let mode = "white";
 let r = 237;
 let g = 237;
 let b = 237;
@@ -68,6 +69,7 @@ let no_fill = false;
 let max_forms_square = 1;
 let max_forms_triangle = 1;
 let max_forms_circles = 1;
+let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = false;
@@ -83,7 +85,7 @@ let max_random_number = 3;
 let add_text = true;
 
 // Background
-let mode = "random_triagles";
+let mode = "white";
 let r = 237;
 let g = 237;
 let b = 237;
@@ -115,6 +117,7 @@ let no_fill = false;
 let max_forms_square = 1;
 let max_forms_triangle = 1;
 let max_forms_circles = 1;
+let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = true;
@@ -130,7 +133,7 @@ let max_random_number = 5;
 let add_text = true;
 
 // Background
-let mode = "random_triagles";
+let mode = "white";
 let r = 237;
 let g = 237;
 let b = 237;
@@ -155,17 +158,18 @@ let stroke_weight = 0.7; // 0
 let stroke_color = 0;
 
 // Object color
-let transp = 200;
+let transp = 200; // 10
 let no_fill = false;
 
 // Objects repetition
 let max_forms_square = 70;
 let max_forms_triangle = 70;
 let max_forms_circles = 70;
+let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = true;
-let inc_limit = 300;
+let inc_limit = 200;
 let random_stroke = true;
 let random_objects = true;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
@@ -177,7 +181,7 @@ let max_random_number = 5;
 let add_text = true;
 
 // Background
-let mode = "random_triagles";
+let mode = "white";
 let r = 237;
 let g = 237;
 let b = 237;
@@ -212,6 +216,7 @@ let no_fill = false;
 let max_forms_square = 70;
 let max_forms_triangle = 70;
 let max_forms_circles = 70;
+let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = true;
@@ -227,7 +232,7 @@ let max_random_number = 5;
 let add_text = true;
 
 // Background
-let mode = "random_triagles";
+let mode = "white";
 let r = 237;
 let g = 237;
 let b = 237;
@@ -259,6 +264,7 @@ let no_fill = false;
 let max_forms_square = 10;
 let max_forms_triangle = 10;
 let max_forms_circles = 10;
+let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = true;
@@ -274,10 +280,60 @@ let max_random_number = 5;
 let add_text = true;
 
 // Background
-let mode = "random_triagles";
+let mode = "white";
 let r = 237;
 let g = 237;
 let b = 237;
+// add white
+
+
+
+
+Random object projections
+-------------------------
+// Cube dimensions
+let dim_cube = 10;
+
+// Objects Grid
+let ext_space = 100;
+let int_space = 10;
+
+// Objects perimeter
+let round_edges = 1;
+let no_stroke = false;
+let stroke_weight = 3; // change here
+let stroke_color = 40;
+
+// Object color
+let transp = 75; // change here
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 10;
+let max_forms_triangle = 10;
+let max_forms_circles = 10;
+let form_sep = 1;
+
+// Objects Randomness
+let random_sizes = true;
+let inc_limit = 100;
+let random_stroke = false;
+let random_objects = true;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 5;
+
+// Text
+let add_text = true;
+
+// Background
+let mode = "white";
+let r = 237;
+let g = 237;
+let b = 237;
+
+
 
 
 
@@ -299,17 +355,18 @@ let stroke_weight = 0;
 let stroke_color = 0;
 
 // Object color
-let transp = 30;
+let transp = 90;
 let no_fill = false;
 
 // Objects repetition
-let max_forms_square = 10;
-let max_forms_triangle = 10;
-let max_forms_circles = 10;
+let max_forms_square = 1;
+let max_forms_triangle = 1;
+let max_forms_circles = 1;
+let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = true;
-let inc_limit = 100;
+let inc_limit = 200;
 let random_stroke = true;
 let random_objects = false;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
@@ -321,7 +378,7 @@ let max_random_number = 5;
 let add_text = true;
 
 // Background
-let mode = "random_triagles";
+let mode = "white";
 let r = 237;
 let g = 237;
 let b = 237;
@@ -334,48 +391,49 @@ let b = 237;
 
 
 
-Random triangles:
-------------
+Transparent stacked forms:
+--------------------------
 // Cube dimensions
-let dim_cube = 20;
+let dim_cube = 5;
 
 // Objects Grid
 let ext_space = 100;
-let int_space = 0;
+let int_space = 20;
 
 // Objects perimeter
 let round_edges = 0;
 let no_stroke = false;
-let stroke_weight = 0;
-let stroke_color = 0;
+let stroke_weight = 1;
+let stroke_color = 40;
 
 // Object color
-let transp = 500;
-let no_fill = false;
+let transp = 1;
+let no_fill = true;
 
 // Objects repetition
-let max_forms_square = 1;
-let max_forms_triangle = 1;
-let max_forms_circles = 1;
+let max_forms_square = 40;
+let max_forms_triangle = 20;
+let max_forms_circles = 60;
+let form_sep = 1.05;
 
 // Objects Randomness
-let random_sizes = true;
-let inc_limit = 200;
+let random_sizes = false;
+let inc_limit = 300;
 let random_stroke = true;
-let random_objects = false;
-let object_number = 2; // Square:0 | Circle:1 | Triangle:2
+let random_objects = true;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
 
 // Hidden objects
-let max_random_number = 5;
+let max_random_number = 3;
 
 // Text
 let add_text = true;
 
 // Background
 let mode = "white";
-let r = 110;// 237; // 110
-let g = 187;// 237; // 187
-let b = 222;// 237; // 222
+let r = 237;
+let g = 237;
+let b = 237;
 
 
 
@@ -385,7 +443,6 @@ let b = 222;// 237; // 222
 
 Ghost Bauhaus:
 --------------
-
 // Cube dimensions
 let dim_cube = 8;
 
@@ -407,6 +464,7 @@ let no_fill = false;
 let max_forms_square = 70;
 let max_forms_triangle = 70;
 let max_forms_circles = 70;
+let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = true;

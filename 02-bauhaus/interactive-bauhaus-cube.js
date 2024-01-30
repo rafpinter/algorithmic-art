@@ -8,6 +8,7 @@ Genuary: Bauhaus (?)
 from: https://filmlifestyle.com/what-is-bauhaus/
 
 What if I:
+
 - recreate my rubik's cube in a bauhaus style?
 - can make my cube bigger?
 - change the objects and their sizes randomly?
@@ -30,39 +31,39 @@ let ext_space = 100;
 let int_space = 10;
 
 // Objects perimeter
-let round_edges = 0;
-let no_stroke = false;
-let stroke_weight = 0; // 0
+let round_edges = 10;
+let no_stroke = true;
+let stroke_weight = 0;
 let stroke_color = 0;
 
 // Object color
-let transp = 40;
+let transp = 400;
 let no_fill = false;
 
 // Objects repetition
-let max_forms_square = 70;
-let max_forms_triangle = 70;
-let max_forms_circles = 70;
+let max_forms_square = 1;
+let max_forms_triangle = 1;
+let max_forms_circles = 1;
+let form_sep = 1;
 
 // Objects Randomness
-let random_sizes = true;
+let random_sizes = false;
 let inc_limit = 300;
 let random_stroke = true;
-let random_objects = true;
+let random_objects = false;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
 
 // Hidden objects
-let max_random_number = 5;
+let max_random_number = 3;
 
 // Text
 let add_text = true;
 
 // Background
-let mode = "random_triagles";
+let mode = "white";
 let r = 237;
 let g = 237;
 let b = 237;
-
 
 // Canvas variables 
 // ---------------
@@ -71,7 +72,6 @@ let ht = 900;
 let color_array = [];
 let sq_size = (wd - ext_space * 2 - int_space * (dim_cube - 1)) / dim_cube;
 var cube;
-
 
 
 // Setup function
@@ -85,7 +85,7 @@ function setup() {
         color(21, 64, 132, transp), // blue
         color(215, 180, 24, transp), // yellow
         // color(237, 237, 237, transp), // white
-        // color(34, 34, 34, transp), // black
+        color(34, 34, 34, transp), // black
         // color(249, 91, 19, transp), // orange
         // color(245, 245, 245), // white no transp
     ];
@@ -101,17 +101,15 @@ function setup() {
 
 // Draw function
 function draw() {
+    // Control background color
     if (mode == "dark") {
         r = 50; g = 50; b = 50;
     }
     else if (mode == "random") {
         r = random(0, 255); g = random(0, 255); b = random(0, 255);
     }
-    else if (mode == "random_triangles") {
-        r = 110; g = 187; b = 222;
-    }
     background(color(r, g, b));
-    stroke(stroke_color);
+
     strokeWeight(stroke_weight);
     for (let i = 0; i < cube.objects.length; i++) {
         cube.objects[i].display();
@@ -120,9 +118,12 @@ function draw() {
 }
 
 function txtBottom() {
-    font = "awanzaman";
+    // Font
+    font = "Raleway";
     textFont(font);
+
     if (add_text) {
+        // Control dark mode colors
         if (mode == "dark") {
             cor = 200;
         } else {
@@ -146,7 +147,7 @@ function txtBottom() {
     }
 }
 
-// Cube data structure
+// "Cube" data structure
 class Cube {
     constructor(shape, ext_space, int_space, round_edges, color_array, sq_size) {
         this.shape = shape;
@@ -162,6 +163,7 @@ class Cube {
         this.objects = [];
         for (let i = 0; i < this.shape; i++) {
             for (let j = 0; j < this.shape; j++) {
+                // Random form selection
                 let randint;
                 if (random_objects) {
                     randint = floor(random(max_random_number));
@@ -172,7 +174,7 @@ class Cube {
                 console.log(randint);
 
                 if (randint === 0) {
-                    // push square
+                    // Push square
                     this.objects.push(new Square(
                         i,
                         j,
@@ -184,7 +186,7 @@ class Cube {
                     ));
                 }
                 else if (randint === 1) {
-                    // push circle
+                    // Push circle
                     this.objects.push(new Circle(
                         i,
                         j,
@@ -196,7 +198,7 @@ class Cube {
                     ));
                 }
                 else if (randint === 2) {
-                    // push triangle
+                    // Push triangle
                     this.objects.push(new Triangle(
                         i,
                         j,
@@ -212,6 +214,7 @@ class Cube {
     }
 }
 
+// Class for objects
 class GeometricForm {
     constructor(x, y, size, round_corner, color_array, ext_space, int_space) {
         this.x = x;
@@ -222,12 +225,14 @@ class GeometricForm {
         this.ext_space = ext_space;
         this.int_space = int_space;
 
+        // Functions
         this.dimensions();
         this.fill_object();
         this.object_stroke();
     }
 
     dimensions() {
+        // Dimensions of the object
         this.xmin = this.ext_space + this.x * (this.size + this.int_space);
         this.xmax = this.xmin + this.size;
         this.ymin = this.ext_space + this.y * (this.size + this.int_space)
@@ -235,10 +240,12 @@ class GeometricForm {
     }
 
     fill_object() {
+        // Fill color
         this.fill_color = random(this.color_array);
     }
 
     object_stroke() {
+        // Control stroke
         if (no_stroke == false) {
             stroke(0);
         }
@@ -246,23 +253,36 @@ class GeometricForm {
             noStroke();
         }
     }
-
-    redraw_object() {
-        this.fill_color = random(this.color_array);
-        if (this.fill_color != color(background_color, transp)) {
-            this.display();
-        }
-    }
 }
 
-
+// Circle data structure
 class Circle extends GeometricForm {
     display() {
+        // Random stroke
+        if (no_stroke == false) {
+            if (random_stroke == true && floor(random(3)) == 2) {
+                stroke(0);
+            } else if (random_stroke == false) {
+                stroke(0);
+            }
+            else {
+                noStroke();
+            }
+        }
+        else {
+            noStroke();
+        }
+
+        // Random size increment
         let inc = 0;
         if (random_sizes) {
             inc = random(-inc_limit, inc_limit);
         }
+
+        // Multiple objects
         for (let i = 0; i < max_forms_circles; i++) {
+            i = i * form_sep;
+
             if (no_fill) {
                 noFill();
 
@@ -278,10 +298,12 @@ class Circle extends GeometricForm {
     }
 }
 
+// Triangle data structure
 class Triangle extends GeometricForm {
     display() {
         // Triangle points
         let x1, y1, x2, y2, x3, y3;
+
         // Default triangle
         x1 = this.xmin;
         y1 = this.ymax;
@@ -290,6 +312,7 @@ class Triangle extends GeometricForm {
         x3 = (this.xmin + this.xmax) / 2;
         y3 = this.ymin;
 
+        // Random side of the triangle
         let randint = floor(random(3));
 
         // Other side
@@ -307,12 +330,9 @@ class Triangle extends GeometricForm {
             y3 = (this.ymin + this.ymax) / 2;
         }
 
-        // Controling stroke
-        if (random_stroke || no_stroke) {
-            noStroke();
-        }
-
+        // Multiple forms
         for (let i = 0; i < max_forms_triangle; i++) {
+            i = i * form_sep;
             // Displaying figure
             if (no_fill) {
                 noFill();
@@ -337,12 +357,15 @@ class Triangle extends GeometricForm {
 // Squares data structure
 class Square extends GeometricForm {
     display() {
-
+        // Random size increment
         let inc = 0;
         if (random_sizes) {
             inc = random(-inc_limit, inc_limit);
         }
+
+        // Multiple objects
         for (let i = 0; i < max_forms_square; i++) {
+            i = i * form_sep;
             // Drawing object        
             if (no_fill) {
                 noFill();
