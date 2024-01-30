@@ -165,6 +165,56 @@ let b = 237;
 
 
 
+Gray squares:
+-------------
+// Cube dimensions
+let dim_cube = 10;
+
+// Objects Grid
+let ext_space = 100;
+let int_space = 10;
+
+// Objects perimeter
+let round_edges = 0;
+let no_stroke = false;
+let stroke_weight = 0;
+let stroke_color = 0;
+
+// Object color
+let transp = 40;
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 10;
+let max_forms_triangle = 10;
+let max_forms_circles = 10;
+
+// Objects Randomness
+let random_sizes = true;
+let inc_limit = 100;
+let random_stroke = true;
+let random_objects = false;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 5;
+
+// Text
+let add_text = true;
+
+// Background
+let mode = "random_triagles";
+let r = 237;
+let g = 237;
+let b = 237;
+
+
+
+
+
+
+
+
 
 Random triangles:
 ------------
