@@ -39,7 +39,6 @@ let add_text = true;
 // Background
 let mode = "white";
 let r = 237;
-
 let g = 237;
 let b = 237;
 

@@ -31,30 +31,30 @@ let ext_space = 100;
 let int_space = 10;
 
 // Objects perimeter
-let round_edges = 0;
-let no_stroke = false;
-let stroke_weight = 3;
-let stroke_color = 40;
+let round_edges = 10;
+let no_stroke = true;
+let stroke_weight = 0;
+let stroke_color = 0;
 
 // Object color
-let transp = 250;
+let transp = 400;
 let no_fill = false;
 
 // Objects repetition
-let max_forms_square = 30;
-let max_forms_triangle = 30;
-let max_forms_circles = 30;
+let max_forms_square = 1;
+let max_forms_triangle = 1;
+let max_forms_circles = 1;
 let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = false;
-let inc_limit = 30;
-let random_stroke = false;
-let random_objects = true;
+let inc_limit = 300;
+let random_stroke = true;
+let random_objects = false;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
 
 // Hidden objects
-let max_random_number = 5;
+let max_random_number = 3;
 
 // Text
 let add_text = true;
