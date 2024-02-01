@@ -39,6 +39,7 @@ let add_text = true;
 // Background
 let mode = "white";
 let r = 237;
+
 let g = 237;
 let b = 237;
 
@@ -484,3 +485,54 @@ let mode = "white";
 let r = 237; // 110
 let g = 237; // 187
 let b = 237; // 19
+
+
+
+
+
+
+
+
+
+
+// Cube dimensions
+let dim_cube = 3;
+
+// Objects Grid
+let ext_space = 10;
+let int_space = 100;
+
+// Objects perimeter
+let round_edges = 0;
+let no_stroke = false;
+let stroke_weight = 1;
+let stroke_color = 0;
+
+// Object color
+let transp = 950;
+let no_fill = true;
+
+// Objects repetition
+let max_forms_square = 100;
+let max_forms_triangle = 70;
+let max_forms_circles = 90;
+let form_sep = 1;
+
+// Objects Randomness
+let random_sizes = false;
+let inc_limit = 30;
+let random_stroke = false;
+let random_objects = false;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 10;
+
+// Text
+let add_text = false;
+
+// Background
+let mode = "white";
+let r = 237;
+let g = 237;
+let b = 237;
