@@ -493,7 +493,7 @@ let b = 237; // 19
 
 
 
-
+// Ligia
 // Cube dimensions
 let dim_cube = 3;
 
@@ -529,6 +529,50 @@ let max_random_number = 10;
 
 // Text
 let add_text = false;
+
+// Background
+let mode = "white";
+let r = 237;
+let g = 237;
+let b = 237;
+
+
+// Charlie
+// Cube dimensions
+let dim_cube = 5;
+
+// Objects Grid
+let ext_space = 100;
+let int_space = 10;
+
+// Objects perimeter
+let round_edges = 0;
+let no_stroke = true;
+let stroke_weight = 2;
+let stroke_color = 0;
+
+// Object color
+let transp = 9;
+let no_fill = false;
+
+// Objects repetition
+let max_forms_square = 1;
+let max_forms_triangle = 1;
+let max_forms_circles = 1;
+let form_sep = 1;
+
+// Objects Randomness
+let random_sizes = true;
+let inc_limit = 300;
+let random_stroke = true;
+let random_objects = false;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
+
+// Hidden objects
+let max_random_number = 3;
+
+// Text
+let add_text = true;
 
 // Background
 let mode = "white";
