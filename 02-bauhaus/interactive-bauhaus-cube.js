@@ -31,30 +31,30 @@ let ext_space = 100;
 let int_space = 10;
 
 // Objects perimeter
-let round_edges = 10;
-let no_stroke = true;
-let stroke_weight = 0;
-let stroke_color = 0;
+let round_edges = 0;
+let no_stroke = false;
+let stroke_weight = 3;
+let stroke_color = 40;
 
 // Object color
-let transp = 400;
+let transp = 250;
 let no_fill = false;
 
 // Objects repetition
-let max_forms_square = 1;
-let max_forms_triangle = 1;
-let max_forms_circles = 1;
+let max_forms_square = 30;
+let max_forms_triangle = 30;
+let max_forms_circles = 30;
 let form_sep = 1;
 
 // Objects Randomness
 let random_sizes = false;
-let inc_limit = 300;
-let random_stroke = true;
-let random_objects = false;
+let inc_limit = 30;
+let random_stroke = false;
+let random_objects = true;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
 
 // Hidden objects
-let max_random_number = 3;
+let max_random_number = 5;
 
 // Text
 let add_text = true;
@@ -84,8 +84,11 @@ function setup() {
         color(157, 39, 25, transp), // red
         color(21, 64, 132, transp), // blue
         color(215, 180, 24, transp), // yellow
+        color(237, 237, 237, transp), // white
         // color(237, 237, 237, transp), // white
-        color(34, 34, 34, transp), // black
+        // color(237, 237, 237, transp), // white
+        // color(237, 237, 237, transp), // white
+        // color(34, 34, 34, transp), // black
         // color(249, 91, 19, transp), // orange
         // color(245, 245, 245), // white no transp
     ];
@@ -247,7 +250,10 @@ class GeometricForm {
     object_stroke() {
         // Control stroke
         if (no_stroke == false) {
-            stroke(0);
+            if (mode == "dark") {
+                stroke_color = 255 - stroke_color;
+            }
+            stroke(stroke_color);
         }
         else {
             noStroke();
@@ -261,9 +267,9 @@ class Circle extends GeometricForm {
         // Random stroke
         if (no_stroke == false) {
             if (random_stroke == true && floor(random(3)) == 2) {
-                stroke(0);
+                stroke(stroke_color);
             } else if (random_stroke == false) {
-                stroke(0);
+                stroke(stroke_color);
             }
             else {
                 noStroke();
