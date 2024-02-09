@@ -10,10 +10,10 @@ let x1, y1, x2, y2, x3, y3, x4, y4
 let i = 30
 let offset = 100
 let speed = 0.005
-let j1 = 0 //-110
-let j2 = 0 //-110
-let j3 = 0 //100
-let j4 = 0 //100
+let j1 = -110
+let j2 = -110
+let j3 = 100
+let j4 = 100
 
 
 function setup() {
@@ -23,8 +23,6 @@ function setup() {
 
 function draw() {
     // background(0)
-
-    // noLoop()
 
     bezier_func(1)
 
@@ -40,11 +38,11 @@ function bezier_func(l) {
 
     stroke(
         // 200, 0, 0, // red
-        200, 200, 0, // yellow
-        // noise(offset + i) * 300,
-        // noise(offset + i * 2) * 300, // adds color
-        // noise(offset + i * 3) * 300, // adds color
-        20)
+        // 200, 200, 0, // yellow
+        noise(offset + i) * 300,
+        noise(offset + i * 2) * 300, // adds color
+        noise(offset + i * 3) * 300, // adds color
+        200)
 
     x1 = (noise(offset + i) * width + j1) * l
     y1 = (noise(offset + i * 2) * height + j1) * l
@@ -55,11 +53,20 @@ function bezier_func(l) {
     x4 = (noise(offset + i * 7) * width + j4) * l
     y4 = (noise(offset + i * 8) * height + j4) * l
 
+    // y1 = randomGaussian() * 900
+    // x1 = randomGaussian() * 700
+    // x2 = randomGaussian() * 700
+    // y2 = randomGaussian() * 900
+    // x3 = randomGaussian() * 700
+    // y3 = randomGaussian() * 900
+    // x4 = randomGaussian() * 700
+    // y4 = randomGaussian() * 900
+
     bezier(
         x1, y1,
         x2, y2,
         x3, y3,
-        x1, y1)
+        x4, y4)
 
     offset += speed
 
