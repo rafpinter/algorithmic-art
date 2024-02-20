@@ -3,6 +3,11 @@
 References:
 https://www.youtube.com/watch?v=uctX1P3H3xM
 https://editor.p5js.org/PeterQwertz/sketches/Mh7aSsyMl
+
+
+vec_of_bezier_lines = [...,...,...]
+new_point = point
+vec_of_bezier_lines[i % len(vec)] = new_point
 */
 
 let pause = false
@@ -10,15 +15,15 @@ let x1, y1, x2, y2, x3, y3, x4, y4
 let i = 30
 let offset = 100
 let speed = 0.005
-let j1 = 0 //-110
-let j2 = 0 //-110
-let j3 = 0 //100
-let j4 = 0 //100
+let j1 = -100
+let j2 = -100
+let j3 = 100
+let j4 = 100
 
 
 function setup() {
     createCanvas(700, 900)
-    background(0)
+    background(5)
 }
 
 function draw() {
@@ -34,17 +39,18 @@ function draw() {
 
 
 function bezier_func(l) {
-    // background(10, 10, 10, 100)
+    background(5, 5, 5, 6)
     noFill()
-    strokeWeight(1)
+    strokeWeight(4)
 
     stroke(
-        // 200, 0, 0, // red
-        200, 200, 0, // yellow
+        200, 0, 0, // red
+        // 200, 200, 0, // yellow
         // noise(offset + i) * 300,
         // noise(offset + i * 2) * 300, // adds color
         // noise(offset + i * 3) * 300, // adds color
-        20)
+        40
+    )
 
     x1 = (noise(offset + i) * width + j1) * l
     y1 = (noise(offset + i * 2) * height + j1) * l
@@ -59,10 +65,10 @@ function bezier_func(l) {
         x1, y1,
         x2, y2,
         x3, y3,
-        x1, y1)
-
+        // x4, y4,
+        x1, y1,
+    )
     offset += speed
-
 }
 
 function mousePressed() {
