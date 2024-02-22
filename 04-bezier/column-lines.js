@@ -1,10 +1,27 @@
 let shape = 800;
 let edge = 3 * shape / 100
 let inc = 10
+let svgbtn;
 
 function setup() {
-    createCanvas(shape, shape)
+    createCanvas(shape, shape, SVG)
     background(0)
+
+    svgbtn = createButton("save svg");
+    placebtn()
+    svgbtn.mouseClicked(savesvg);
+}
+
+function placebtn() {
+    var x = (windowWidth - w) / 2;
+    var y = (windowHeight - h) / 2;
+    // genbtn.position(x-200, y+h/2)
+    svgbtn.position(x - 200, y + h / 2 + 42)
+    // gcodebtn.position(x - 200, y +h/2+84 )
+}
+
+function savesvg() {
+    save("plottable001.svg");
 }
 
 function draw() {
