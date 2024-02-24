@@ -1,3 +1,4 @@
 p5/
 .DS_Store
+.cache
 .env
