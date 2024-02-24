@@ -6,6 +6,13 @@ ideas:
 - create a regular grid of x,y points
 - use data as distortion
 
+
+escrever um array com [media, media,..].
+então eu vou populando ele a cada tempo (1 seg) a partir da frequencia
+que eu to ouvindo no microfone. a cada passo eu vou fazendo um shift da
+array pra que pareça algo fluido. aí assim dá até pra eu fazer do mesmo
+jeito 
+
 */
 // playground
 let data_action = false // or random_action
@@ -14,6 +21,7 @@ var default_grid = true
 // screen
 let wd = 700
 let ht = 700
+let margin = 35
 
 // setup
 var grid
@@ -28,7 +36,8 @@ function setup() {
 }
 
 function draw() {
-    background(0)
+    background(240, 240, 230);
+    noStroke()
 
     if (default_grid) {
         // just print grid
@@ -60,10 +69,10 @@ class Grid {
     create_grid() {
         // will loop to create dots
         // variables will come from the constructor
-        for (let i = 1; i < this.rows; i += this.row_space) {
-            for (let j = 1; j < this.columns; j += this.column_space) {
+        for (let i = margin; i < this.rows - margin; i += this.row_space) {
+            for (let j = margin; j < this.columns - margin; j += this.column_space) {
                 // add a dot to the grid
-                this.objects.push(new Dot(i, j, i))
+                this.objects.push(new Dot(i, j, i, j))
             }
         }
     }
@@ -72,24 +81,24 @@ class Grid {
         // will get each point and modify it
         // does this function belong here? idk. tba.
     }
-
 }
 
 class Dot {
-    constructor(x, y, i) {
+    constructor(x, y, i, j) {
         this.x = x
         this.y = y
         this.i = i
+        this.j = j
         this.create_starting_variables(x, y)
     }
 
     create_starting_variables(x, y) {
         // this variables must come from data   
-        this.x = this.x
-        this.y = this.y
+        this.x = this.x + noise(this.i) * 10
+        this.y = this.y + noise(this.j + 5) * 10
         this.size = 1
         this.alpha = 500
-        this.color = 200
+        this.color = color(noise(this.i + 100) * 100, noise(this.j + 5) * 10, 192)
     }
 
     create_dot() {
