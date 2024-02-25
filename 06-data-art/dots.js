@@ -14,56 +14,74 @@ array pra que pareça algo fluido. aí assim dá até pra eu fazer do mesmo
 jeito 
 
 */
+
 // playground
 let data_action = false // or random_action
 var default_grid = true
 
 // screen
-let wd = 700
-let ht = 700
+let wd = 300
+let ht = 300
 let margin = 35
 
 // setup
 var grid
+let data
+var songs_json = 'houses_of_the_holy.json';
+let the_rain_song
+var data_loaded = false
 
 function setup() {
     createCanvas(wd, ht);
-    noLoop();
+    // read data
+    loadJSON(songs_json, on_data_loaded)
+}
 
-    // instanciate default grid
-    grid = new Grid(ht, wd)
-    grid.create_grid()
+function on_data_loaded(loadedData) {
+    data = loadedData
+    the_rain_song = data["0"]
+    data_loaded = true
 }
 
 function draw() {
-    background(240, 240, 230);
-    noStroke()
+    if (data_loaded) {
+        background(240, 240, 230)
+        noStroke()
+        let dims = floor(sqrt(the_rain_song.length))
+        // console.log(the_rain_song)
+        grid = new Grid(dims, the_rain_song)
+        grid.create_grid()
 
-    if (default_grid) {
-        // just print grid
-        for (let i = 0; i < grid.objects.length; i++) {
-            grid.objects[i].display()
-        }
-    } else {
-        if (data_action) {
-            // use data as distortion
+        // translate(width / 2, height / 2);
 
+        if (default_grid) {
+            // just print grid
+            for (let i = 0; i < grid.objects.length; i++) {
+                grid.objects[i].display()
+            }
         } else {
-            // noise distortion
-            // call grid.modify_grid()
+            if (data_action) {
+                // use data as distortion
+
+            } else {
+                // noise distortion
+                // call grid.modify_grid()
+            }
         }
     }
+    // noLoop()
 }
 
 
-
 class Grid {
-    constructor(rows, columns) {
-        this.rows = rows
-        this.columns = columns
-        this.row_space = 10
-        this.column_space = 10
-        this.objects = [] // vector that holds the dots
+    constructor(dims, song) {
+        this.objects = []
+        this.dims = dims
+        this.row_space = wd / dims
+        this.column_space = ht / dims
+        this.rows = dims * this.row_space
+        this.columns = dims * this.column_space
+        this.song = song
     }
 
     create_grid() {
@@ -72,7 +90,9 @@ class Grid {
         for (let i = margin; i < this.rows - margin; i += this.row_space) {
             for (let j = margin; j < this.columns - margin; j += this.column_space) {
                 // add a dot to the grid
-                this.objects.push(new Dot(i, j, i, j))
+                let song_idx = i + j;
+                // console.log()
+                this.objects.push(new Dot(i, j, i, j, this.song[song_idx]))
             }
         }
     }
@@ -84,21 +104,24 @@ class Grid {
 }
 
 class Dot {
-    constructor(x, y, i, j) {
+    constructor(x, y, i, j, song) {
+        this.flag = false
         this.x = x
         this.y = y
         this.i = i
         this.j = j
-        this.create_starting_variables(x, y)
+        this.song = song
+        this.create_starting_variables(x, y, this.song)
     }
 
-    create_starting_variables(x, y) {
-        // this variables must come from data   
-        this.x = this.x + noise(this.i) * 10
-        this.y = this.y + noise(this.j + 5) * 10
+    create_starting_variables(x, y, song) {
+        if (this.song && this.song.length >= 2) {
+            this.x = this.x + this.song[0] * 20
+            this.y = this.y + this.song[1] * 20
+        }
         this.size = 1
         this.alpha = 500
-        this.color = color(noise(this.i + 100) * 100, noise(this.j + 5) * 10, 192)
+        this.color = color(0, 0, 0)
     }
 
     create_dot() {
@@ -115,7 +138,7 @@ class Dot {
     }
 
     display() {
-        strokeWeight(this.size + noise(this.i) * 10)
+        strokeWeight(this.size + 2)// + noise(this.i) * 10)
         stroke(this.color, this.alpha)
         point(this.x, this.y)
     }
