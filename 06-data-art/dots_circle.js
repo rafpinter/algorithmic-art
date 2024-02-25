@@ -20,8 +20,8 @@ let data_action = false // or random_action
 var default_grid = true
 
 // screen
-let wd = 500
-let ht = 500
+let wd = 1000
+let ht = 1000
 let margin = 35
 
 // setup
@@ -48,35 +48,63 @@ function on_data_loaded(loadedData) {
 function draw() {
     background(240, 240, 230)
     translate(width / 2, height / 2);
-    strokeWeight(3)
+    strokeWeight(1)
     if (data_loaded) {
-        drawPoints(1200, 10, 25)
+        drawPoints(1200, 2, 20)
     }
 }
+
+// function drawPoints(len, space, divs) {
+//     let n_points_per_line = Math.ceil(len / divs);
+//     points_array = new Array(n_points_per_line);
+//     for (let i = 2; i <= n_points_per_line + 1; i++) {
+//         points_array[i - 2] = new Array(divs);
+//         for (let j = 0; j < divs; j++) {
+//             let angle = 2 * Math.PI * j / divs
+//             let x = (i * space) * Math.cos(angle)
+//             let y = (i * space) * Math.sin(angle)
+//             points_array[i - 2][j] = [x, y]
+//         }
+//     }
+//     let song_idx = 0;
+//     for (let i = 0; i < n_points_per_line; i++) {
+//         for (let j = 0; j < divs; j++) {
+//             let x = points_array[i][j][0] + the_rain_song[song_idx][0] * 10
+//             let y = points_array[i][j][1] + the_rain_song[song_idx][1] * 10
+//             stroke(0, the_rain_song[song_idx][2] * 9)
+//             point(x, y)
+//             song_idx++
+//         }
+//     }
+//     // noLoop()
+// }
 
 function drawPoints(len, space, divs) {
     let n_points_per_line = Math.ceil(len / divs);
     points_array = new Array(n_points_per_line);
-    for (let i = 0; i < n_points_per_line; i++) {
-        points_array[i] = new Array(divs);
+    for (let i = 2; i <= n_points_per_line + 1; i++) {
+        points_array[i - 2] = new Array(divs);
         for (let j = 0; j < divs; j++) {
-            let angle = 2 * Math.PI * j / divs
-            let x = (i * space) * Math.cos(angle)
-            let y = (i * space) * Math.sin(angle)
-            points_array[i][j] = [x, y]
+            let angle = 2 * Math.PI * j / divs;
+            let x = (i * space) * Math.cos(angle);
+            let y = (i * space) * Math.sin(angle);
+            points_array[i - 2][j] = [x, y];
         }
     }
-    // console.log(points_array)
     let song_idx = 0;
+    noFill()
+    beginShape()
     for (let i = 0; i < n_points_per_line; i++) {
         for (let j = 0; j < divs; j++) {
-            let x = points_array[i][j][0] + the_rain_song[song_idx][0] * 10
-            let y = points_array[i][j][1] + the_rain_song[song_idx][1] * 10
-            // console.log(points_array[i][j])
-            stroke(0, the_rain_song[song_idx][2] * 9)
-            point(x, y)
-            song_idx++
+            if (song_idx < the_rain_song.length) {
+                let x = points_array[i][j][0] + the_rain_song[song_idx][0] * 10;
+                let y = points_array[i][j][1] + the_rain_song[song_idx][1] * 10;
+                // strokeWeight(map(the_rain_song[song_idx][2], 15, 0, 0, 5));
+                vertex(x, y); // Use vertex() instead of point()
+                song_idx++;
+            }
         }
     }
+    endShape(); // End the shape
     // noLoop()
 }
