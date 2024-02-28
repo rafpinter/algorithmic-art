@@ -1,28 +1,28 @@
 let shape = 800;
 let edge = 3 * shape / 100
 let inc = 10
-let svgbtn;
+// let svgbtn;
 
 function setup() {
-    createCanvas(shape, shape, SVG)
+    createCanvas(shape, shape)
     background(0)
 
-    svgbtn = createButton("save svg");
-    placebtn()
-    svgbtn.mouseClicked(savesvg);
+    // svgbtn = createButton("save svg");
+    // placebtn()
+    // svgbtn.mouseClicked(savesvg);
 }
 
-function placebtn() {
-    var x = (windowWidth - w) / 2;
-    var y = (windowHeight - h) / 2;
-    // genbtn.position(x-200, y+h/2)
-    svgbtn.position(x - 200, y + h / 2 + 42)
-    // gcodebtn.position(x - 200, y +h/2+84 )
-}
+// function placebtn() {
+//     var x = (windowWidth - w) / 2;
+//     var y = (windowHeight - h) / 2;
+//     // genbtn.position(x - 200, y + h / 2)
+//     svgbtn.position(x - 200, y + h / 2 + 42)
+//     // gcodebtn.position(x - 200, y + h / 2 + 84)
+// }
 
-function savesvg() {
-    save("plottable001.svg");
-}
+// function savesvg() {
+//     save("plottable001.svg");
+// }
 
 function draw() {
     noLoop()
@@ -46,7 +46,7 @@ function draw() {
     let i = 2;
     for (let a = frac; a < (den - 1) * frac; a = a + inc) {
         strokeWeight(1 + noise(a + 10) * i)
-        stroke(100, random(10, 300))
+        stroke(100, random(200, 300))
         line(edge, meio, x1, a)
         // bezier_vertexes(edge, meio, x1, a, a, passo)
 
