@@ -36,7 +36,6 @@ function setup() {
     createCanvas(wd, ht);
     // read data
     loadJSON(songs_json, on_data_loaded)
-
 }
 
 function on_data_loaded(loadedData) {
@@ -47,7 +46,7 @@ function on_data_loaded(loadedData) {
 
 function draw() {
     background(240, 240, 230)
-    translate(width / 2, height / 2);
+    translate(width / 2, height / 2)
     strokeWeight(1)
     if (data_loaded) {
         drawPoints(1200, 2, 20)
@@ -85,6 +84,7 @@ function drawPoints(len, space, divs) {
     for (let i = 2; i <= n_points_per_line + 1; i++) {
         points_array[i - 2] = new Array(divs);
         for (let j = 0; j < divs; j++) {
+
             let angle = 2 * Math.PI * j / divs;
             let x = (i * space) * Math.cos(angle);
             let y = (i * space) * Math.sin(angle);
@@ -92,15 +92,16 @@ function drawPoints(len, space, divs) {
         }
     }
     let song_idx = 0;
-    noFill()
-    beginShape()
+    // noFill()
+    // beginShape()
     for (let i = 0; i < n_points_per_line; i++) {
         for (let j = 0; j < divs; j++) {
             if (song_idx < the_rain_song.length) {
                 let x = points_array[i][j][0] + the_rain_song[song_idx][0] * 10;
                 let y = points_array[i][j][1] + the_rain_song[song_idx][1] * 10;
                 // strokeWeight(map(the_rain_song[song_idx][2], 15, 0, 0, 5));
-                vertex(x, y); // Use vertex() instead of point()
+                // vertex(x, y); // Use vertex() instead of point()
+                point(x, y)
                 song_idx++;
             }
         }
