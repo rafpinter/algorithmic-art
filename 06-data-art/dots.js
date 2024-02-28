@@ -133,7 +133,7 @@ class Dot {
         for (let k = 0; k < 5; k++) {
             fill(0)
             // stroke(200, 200, 0, 10)
-            square(random(10, 1000), random(10, 1000), 25)
+            square(random(0, wd), random(0, ht), 10)
             // square(100, 100, 10)
         }
     }
