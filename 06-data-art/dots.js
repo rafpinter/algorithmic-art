@@ -123,11 +123,18 @@ class Dot {
 
     display() {
         // stroke(200, 200, 0, this.alpha)
-        strokeWeight(2)// + noise(this.i) * 10)
+        strokeWeight(1)// + noise(this.i) * 10)
         for (let i = 0; i < 20; i++) {
             // stroke(10, 10, 10, 1 + 10 * i)
-            fill(200, 200, 0)
+            noStroke()
+            fill(100, 100, 250)
             ellipse(this.x + i, this.y + i, 1)
+        }
+        for (let k = 0; k < 5; k++) {
+            fill(0)
+            // stroke(200, 200, 0, 10)
+            square(random(10, 1000), random(10, 1000), 25)
+            // square(100, 100, 10)
         }
     }
 }
