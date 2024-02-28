@@ -31,6 +31,9 @@ var songs_json = 'houses_of_the_holy.json';
 let the_rain_song
 var data_loaded = false
 
+// make it rain?
+let make_it_rain = true
+
 function setup() {
     createCanvas(wd, ht);
     // read data
@@ -60,6 +63,14 @@ function draw() {
             if (data_action) {
             } else {
             }
+        }
+    }
+    if (make_it_rain) {
+        for (let k = 0; k < 2000; k++) {
+            fill(0)
+            stroke(200, 200, 0, 10)
+            square(random(0, wd), random(0, ht), 10)
+            // square(100, 100, 10)
         }
     }
 }
@@ -127,14 +138,18 @@ class Dot {
         for (let i = 0; i < 20; i++) {
             // stroke(10, 10, 10, 1 + 10 * i)
             noStroke()
-            fill(100, 100, 250)
+            fill(100, 100, 250, 200)
             ellipse(this.x + i, this.y + i, 1)
         }
-        for (let k = 0; k < 5; k++) {
-            fill(0)
-            // stroke(200, 200, 0, 10)
-            square(random(0, wd), random(0, ht), 10)
-            // square(100, 100, 10)
-        }
+
     }
+    // display() {
+    //     // stroke(200, 200, 0, this.alpha)
+    //     strokeWeight(2)// + noise(this.i) * 10)
+    //     for (let i = 0; i < 20; i++) {
+    //         // stroke(10, 10, 10, 1 + 10 * i)
+    //         fill(200, 200, 0, 120)
+    //         ellipse(this.x + i, this.y + i, 1)
+    //     }
+    // }
 }
