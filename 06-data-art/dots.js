@@ -20,8 +20,8 @@ let data_action = false // or random_action
 var default_grid = true
 
 // screen
-let wd = 300
-let ht = 300
+let wd = 600
+let ht = 600
 let margin = 35
 
 // setup
@@ -39,20 +39,17 @@ function setup() {
 
 function on_data_loaded(loadedData) {
     data = loadedData
-    the_rain_song = data["0"]
+    the_rain_song = data["5"]
     data_loaded = true
 }
 
 function draw() {
     if (data_loaded) {
-        background(240, 240, 230)
+        background(0)
         noStroke()
         let dims = floor(sqrt(the_rain_song.length))
-        // console.log(the_rain_song)
         grid = new Grid(dims, the_rain_song)
-        grid.create_grid()
-
-        // translate(width / 2, height / 2);
+        grid.create_song_grid()
 
         if (default_grid) {
             // just print grid
@@ -61,34 +58,29 @@ function draw() {
             }
         } else {
             if (data_action) {
-                // use data as distortion
-
             } else {
-                // noise distortion
-                // call grid.modify_grid()
             }
         }
     }
-    // noLoop()
 }
 
 
 class Grid {
-    constructor(dims, song) {
+    constructor(dims, song, i) {
         this.objects = []
         this.dims = dims
-        this.row_space = wd / dims
-        this.column_space = ht / dims
+        this.row_space = wd / (dims)
+        this.column_space = ht / (dims)
         this.rows = dims * this.row_space
         this.columns = dims * this.column_space
         this.song = song
     }
 
-    create_grid() {
+    create_song_grid() {
         // will loop to create dots
-        // variables will come from the constructor
-        for (let i = margin; i < this.rows - margin; i += this.row_space) {
-            for (let j = margin; j < this.columns - margin; j += this.column_space) {
+        // variables will come from the constructor)
+        for (let i = margin - 8; i < this.rows - margin; i += this.row_space) {
+            for (let j = margin - 8; j < this.columns - margin; j += this.column_space) {
                 // add a dot to the grid
                 let song_idx = i + j;
                 // console.log()
@@ -98,8 +90,6 @@ class Grid {
     }
 
     modify_grid() {
-        // will get each point and modify it
-        // does this function belong here? idk. tba.
     }
 }
 
@@ -113,7 +103,6 @@ class Dot {
         this.song = song
         this.create_starting_variables(x, y, this.song)
     }
-
     create_starting_variables(x, y, song) {
         if (this.song && this.song.length >= 2) {
             this.x = this.x + this.song[0] * 20
@@ -122,11 +111,6 @@ class Dot {
         this.size = 1
         this.alpha = 500
         this.color = color(0, 0, 0)
-    }
-
-    create_dot() {
-        // creates and returns a dot (which will be a point in x,y
-        // with a strokeWeight = size, and stroke(color, alpha))
     }
 
     modify_point(x, y, size, alpha, color) {
@@ -138,8 +122,12 @@ class Dot {
     }
 
     display() {
-        strokeWeight(this.size + 2)// + noise(this.i) * 10)
-        stroke(this.color, this.alpha)
-        point(this.x, this.y)
+        // stroke(200, 200, 0, this.alpha)
+        strokeWeight(2)// + noise(this.i) * 10)
+        for (let i = 0; i < 20; i++) {
+            // stroke(10, 10, 10, 1 + 10 * i)
+            fill(200, 200, 0)
+            ellipse(this.x + i, this.y + i, 1)
+        }
     }
 }
