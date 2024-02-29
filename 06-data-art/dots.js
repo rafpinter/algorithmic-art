@@ -134,14 +134,21 @@ class Dot {
 
     display() {
         // stroke(200, 200, 0, this.alpha)
-        strokeWeight(1)// + noise(this.i) * 10)
-        for (let i = 0; i < 20; i++) {
-            // stroke(10, 10, 10, 1 + 10 * i)
-            noStroke()
-            fill(100, 100, 250, 200)
-            ellipse(this.x + i, this.y + i, 1)
+        if (make_it_rain) {
+            strokeWeight(1)// + noise(this.i) * 10)
+            for (let i = 0; i < 20; i++) {
+                stroke(100, 100, 250, 60)
+                // noStroke()
+                noFill()
+                // fill(100, 100, 250, 200)
+                ellipse(this.x + i, this.y + i, 1.2)
+            }
         }
-
+        stroke(100, 100, 250)
+        // noStroke()
+        noFill()
+        fill(100, 100, 250, 200)
+        ellipse(this.x + 10, this.y + 10, 1.2)
     }
     // display() {
     //     // stroke(200, 200, 0, this.alpha)
