@@ -70,7 +70,6 @@ function draw() {
             fill(0)
             stroke(200, 200, 0, 10)
             square(random(0, wd), random(0, ht), 10)
-            // square(100, 100, 10)
         }
     }
 }
@@ -94,7 +93,6 @@ class Grid {
             for (let j = margin - 8; j < this.columns - margin; j += this.column_space) {
                 // add a dot to the grid
                 let song_idx = i + j;
-                // console.log()
                 this.objects.push(new Dot(i, j, i, j, this.song[song_idx]))
             }
         }
@@ -133,30 +131,17 @@ class Dot {
     }
 
     display() {
-        // stroke(200, 200, 0, this.alpha)
         if (make_it_rain) {
-            strokeWeight(1)// + noise(this.i) * 10)
+            strokeWeight(1)
             for (let i = 0; i < 20; i++) {
                 stroke(100, 100, 250, 60)
-                // noStroke()
                 noFill()
-                // fill(100, 100, 250, 200)
                 ellipse(this.x + i, this.y + i, 1.2)
             }
         }
         stroke(100, 100, 250)
-        // noStroke()
         noFill()
         fill(100, 100, 250, 200)
         ellipse(this.x + 10, this.y + 10, 1.2)
     }
-    // display() {
-    //     // stroke(200, 200, 0, this.alpha)
-    //     strokeWeight(2)// + noise(this.i) * 10)
-    //     for (let i = 0; i < 20; i++) {
-    //         // stroke(10, 10, 10, 1 + 10 * i)
-    //         fill(200, 200, 0, 120)
-    //         ellipse(this.x + i, this.y + i, 1)
-    //     }
-    // }
 }
