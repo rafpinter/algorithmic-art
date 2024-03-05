@@ -32,7 +32,7 @@ let the_rain_song
 var data_loaded = false
 
 // make it rain?
-let make_it_rain = true
+let make_it_rain = false
 
 function setup() {
     createCanvas(wd, ht);
@@ -114,8 +114,9 @@ class Dot {
     }
     create_starting_variables(x, y, song) {
         if (this.song && this.song.length >= 2) {
-            this.x = this.x + this.song[0] * 20
-            this.y = this.y + this.song[1] * 20
+            this.x = this.x + this.song[0] * 10
+            this.y = this.y + this.song[1] * 10
+            this.alfa = abs(this.song[0] + this.song[1])
         }
         this.size = 1
         this.alpha = 500
@@ -134,14 +135,16 @@ class Dot {
         if (make_it_rain) {
             strokeWeight(1)
             for (let i = 0; i < 20; i++) {
-                stroke(100, 100, 250, 60)
+                stroke(100, 100, 250)
                 noFill()
-                ellipse(this.x + i, this.y + i, 1.2)
+                point(this.x + i, this.y + i, 1.2)
             }
         }
-        stroke(100, 100, 250)
+        // stroke(100, 100, 250)
         noFill()
-        fill(100, 100, 250, 200)
-        ellipse(this.x + 10, this.y + 10, 1.2)
+        // console.log(this.alfa * 2000)
+        // fill(100, 100, 250, 200, this.alfa * 1000)
+        fill(255, this.alfa * 2000 + 50)
+        ellipse(this.x, this.y + 10, 3)
     }
 }
