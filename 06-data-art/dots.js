@@ -1,28 +1,15 @@
 /*
-
 what does data do?
-
-ideas:
-- create a regular grid of x,y points
-- use data as distortion
-
-
-escrever um array com [media, media,..].
-então eu vou populando ele a cada tempo (1 seg) a partir da frequencia
-que eu to ouvindo no microfone. a cada passo eu vou fazendo um shift da
-array pra que pareça algo fluido. aí assim dá até pra eu fazer do mesmo
-jeito 
-
 */
 
 // playground
-let data_action = false // or random_action
+let data_action = false
 var default_grid = true
 
 // screen
-let wd = 900
+let wd = 1600
 let ht = 900
-let margin = 120
+let margin = 100
 
 // setup
 var grid
@@ -31,8 +18,11 @@ var songs_json = 'houses_of_the_holy.json';
 let the_rain_song
 var data_loaded = false
 
-// make it rain?
-let make_it_rain = false
+let song_weight = 20
+let X = 1000;
+let Y = 450;
+
+let fill_color = 244
 
 function setup() {
     createCanvas(wd, ht);
@@ -42,13 +32,14 @@ function setup() {
 
 function on_data_loaded(loadedData) {
     data = loadedData
-    the_rain_song = data["1"]
+    let song_sel = "1"
+    the_rain_song = data[song_sel]["metrics"]
     data_loaded = true
 }
 
 function draw() {
     if (data_loaded) {
-        background(0)
+        background(255 - fill_color)
         noStroke()
         let dims = floor(sqrt(the_rain_song.length))
         grid = new Grid(dims, the_rain_song)
@@ -64,14 +55,11 @@ function draw() {
             } else {
             }
         }
+        stroke(0)
+
+        point(X, Y)
     }
-    if (make_it_rain) {
-        for (let k = 0; k < 2000; k++) {
-            fill(0)
-            stroke(200, 200, 0, 10)
-            square(random(0, wd), random(0, ht), 10)
-        }
-    }
+
 }
 
 
@@ -87,16 +75,17 @@ class Grid {
     }
 
     create_song_grid() {
-        // will loop to create dots
-        // variables will come from the constructor)
+
         let k = 0
-        for (let i = margin + this.row_space; i <= this.rows - margin; i += this.row_space) {
-            for (let j = margin + this.row_space; j <= this.columns - margin; j += this.column_space) {
+        for (let i = margin; i <= this.rows - margin; i += this.row_space) {
+            for (let j = margin; j <= this.columns - margin; j += this.column_space) {
                 // add a dot to the grid
-                // let song_idx = i + j;
-                this.objects.push(new Dot(i, j, i, j, this.song[k]))
+                let shift = 0
+                // for (shift = 0; shift < this.column_space; shift++)
+                this.objects.push(new Dot(i + shift, j + shift, i + shift, j + shift, this.song[k]))
                 k++
             }
+
         }
     }
 
@@ -116,8 +105,8 @@ class Dot {
     }
     create_starting_variables(x, y, song) {
         if (this.song && this.song.length >= 2) {
-            this.x = this.x + this.song[0] * 10
-            this.y = this.y + this.song[1] * 10
+            this.x = this.x + this.song[0] * song_weight
+            this.y = this.y + this.song[1] * song_weight
             this.alfa = abs(this.song[0] + this.song[1])
         }
         this.size = 1
@@ -134,16 +123,20 @@ class Dot {
     }
 
     display() {
-        if (make_it_rain) {
-            strokeWeight(1)
-            for (let i = 0; i < 20; i++) {
-                stroke(100, 100, 250)
-                noFill()
-                point(this.x + i, this.y + i, 1.2)
-            }
-        }
+
         noFill()
-        fill(255, this.alfa * 1000)
-        ellipse(this.x, this.y, 5)
+        strokeWeight(0)
+        fill(fill_color, this.alfa * 20)
+        ellipse(this.x, this.y, 2)
+
+        stroke(fill_color, this.alfa * 50)
+        strokeWeight(2)
+        line(
+            this.x,
+            this.y,
+            this.i,
+            this.j)
+        line(X, Y, this.x,
+            this.y,)
     }
 }
