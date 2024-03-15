@@ -20,9 +20,9 @@ let data_action = false // or random_action
 var default_grid = true
 
 // screen
-let wd = 600
-let ht = 600
-let margin = 35
+let wd = 900
+let ht = 900
+let margin = 120
 
 // setup
 var grid
@@ -42,7 +42,7 @@ function setup() {
 
 function on_data_loaded(loadedData) {
     data = loadedData
-    the_rain_song = data["5"]
+    the_rain_song = data["1"]
     data_loaded = true
 }
 
@@ -89,11 +89,13 @@ class Grid {
     create_song_grid() {
         // will loop to create dots
         // variables will come from the constructor)
-        for (let i = margin - 8; i < this.rows - margin; i += this.row_space) {
-            for (let j = margin - 8; j < this.columns - margin; j += this.column_space) {
+        let k = 0
+        for (let i = margin + this.row_space; i <= this.rows - margin; i += this.row_space) {
+            for (let j = margin + this.row_space; j <= this.columns - margin; j += this.column_space) {
                 // add a dot to the grid
-                let song_idx = i + j;
-                this.objects.push(new Dot(i, j, i, j, this.song[song_idx]))
+                // let song_idx = i + j;
+                this.objects.push(new Dot(i, j, i, j, this.song[k]))
+                k++
             }
         }
     }
@@ -140,11 +142,8 @@ class Dot {
                 point(this.x + i, this.y + i, 1.2)
             }
         }
-        // stroke(100, 100, 250)
         noFill()
-        // console.log(this.alfa * 2000)
-        // fill(100, 100, 250, 200, this.alfa * 1000)
-        fill(255, this.alfa * 2000 + 50)
-        ellipse(this.x, this.y + 10, 3)
+        fill(255, this.alfa * 1000)
+        ellipse(this.x, this.y, 5)
     }
 }
