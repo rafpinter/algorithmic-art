@@ -29,7 +29,7 @@ let Y = 450
 let perimeter_line = false
 let lines = true
 let only_song_dots = false
-let dark_mode = true
+let white_mode = false
 let fill_color = 244
 
 
@@ -62,8 +62,14 @@ function draw() {
     noLoop()
 
     if (data_loaded) {
+        // Focal point coordinates
+        if (random_focal_point) {
+            X = random(wd / 5, 4 * wd / 5)
+            Y = random(ht / 5, 4 * ht / 5)
+        }
+
         // Background color
-        if (dark_mode) {
+        if (white_mode) {
             fill_color = 255 - fill_color
         }
         background(255 - fill_color)
@@ -78,25 +84,22 @@ function draw() {
             grid.objects[i].display()
         }
 
-        // Focal point
-        if (random_focal_point) {
-            X = random(wd / 5, 4 * wd / 5)
-            Y = random(ht / 5, 4 * ht / 5)
-        }
+        // Displaying focal point
         stroke(240 - fill_color)
         point(X, Y)
-    }
-    // Simple frame
-    if (perimeter_line) {
-        strokeWeight(1)
-        stroke(100)
-        noFill()
-        let inc = 25
-        rect(
-            margin - inc,
-            margin - inc,
-            wd - (2 * (margin - inc)),
-            ht - (2 * (margin - inc)))
+
+        // Simple frame
+        if (perimeter_line) {
+            strokeWeight(1)
+            stroke(100)
+            noFill()
+            let inc = 25
+            rect(
+                margin - inc,
+                margin - inc,
+                wd - (2 * (margin - inc)),
+                ht - (2 * (margin - inc)))
+        }
     }
 }
 
@@ -149,7 +152,7 @@ class Dot {
     display() {
         if (only_song_dots) {
             // Showing only the shifted points
-            if (dark_mode) {
+            if (white_mode) {
                 fill_color = 0
             }
             fill(fill_color, this.alpha_val * 90)
@@ -158,7 +161,7 @@ class Dot {
             // Showing everything
             noFill()
             strokeWeight(0)
-            if (dark_mode) {
+            if (white_mode) {
                 fill_color = 0
             }
             // Adding points shifted by the song
