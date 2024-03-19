@@ -12,7 +12,7 @@ var grid
 let data
 let the_rain_song
 var songs_json = 'houses_of_the_holy.json';
-let perimeter_line = false
+let perimeter_line = true
 var data_loaded = false
 let fill_color = 244
 let margin = 100
@@ -23,16 +23,16 @@ let Y = 450
 
 
 // Canvas
-let only_song_dots = true
-let lines = false
-let white_mode = true
+let only_song_dots = false
+let lines = true
+let white_mode = false
 
 // Randomness
-let random_song = false
-let random_focal_point = false
+let random_song = true
+let random_focal_point = true
 
 // Shift weight
-let shift_weight = 15
+let shift_weight = 20
 
 
 function setup() {
@@ -156,7 +156,7 @@ class Dot {
             if (white_mode) {
                 fill_color = 0
             }
-            fill(fill_color, this.alpha_val * 90)
+            fill(fill_color, this.alpha_val * 100)
             ellipse(this.x, this.y, 4)
         } else {
             // Showing everything
