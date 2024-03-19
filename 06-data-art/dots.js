@@ -6,32 +6,33 @@ what does data do?
 // Screen
 let wd = 1200
 let ht = 800
-let margin = 100
 
 // Setup
 var grid
 let data
-var songs_json = 'houses_of_the_holy.json';
 let the_rain_song
+var songs_json = 'houses_of_the_holy.json';
+let perimeter_line = false
 var data_loaded = false
+let fill_color = 244
+let margin = 100
 
-// Shift weight
-let shift_weight = 15
-
-// Randomness
-let random_song = true
 // Focal point
-let random_focal_point = true
 let X = 900
 let Y = 450
 
-// Canvas
-let perimeter_line = false
-let lines = true
-let only_song_dots = false
-let white_mode = false
-let fill_color = 244
 
+// Canvas
+let only_song_dots = true
+let lines = false
+let white_mode = true
+
+// Randomness
+let random_song = false
+let random_focal_point = false
+
+// Shift weight
+let shift_weight = 15
 
 
 function setup() {
@@ -48,7 +49,7 @@ function on_data_loaded(loadedData) {
         song_sel = floor(random(0, 8))
         song_sel = song_sel.toString()
     } else {
-        song_sel = "0"
+        song_sel = "1"
     }
     // Reading data
     the_rain_song = data[song_sel]["metrics"]
@@ -156,7 +157,7 @@ class Dot {
                 fill_color = 0
             }
             fill(fill_color, this.alpha_val * 90)
-            ellipse(this.x, this.y, 5)
+            ellipse(this.x, this.y, 4)
         } else {
             // Showing everything
             noFill()
