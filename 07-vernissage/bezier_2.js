@@ -32,7 +32,7 @@ var actualheight = bottommargin - topmargin
 let x1, y1, x2, y2, x3, y3, x4, y4
 let i = 30
 let offset = 1
-let speed = 0.007
+let speed = 0.005
 let j1 = -100
 let j2 = -100
 let j3 = 100
@@ -78,25 +78,30 @@ function bezier_func(l) {
         x4 = (noise(offset + i * 7) * width + j4) * l
         y4 = (noise(offset + i * 8) * height + j4) * l
 
+
         bezier(x1, y1, x2, y2, x3, y3, x4, y4)
 
-        // Points
-        // point(x1, y1)
-        // point(x2, y2)
-        // point(x3, y3)
-        // point(x4, y4)
-
-        // Option 1
-        // line(x2, windowWidth, x2, y2)
-        // line(x3, y3, windowHeight, y3)
-        line(leftmargin, x1, x1, y1)
         let max_right
         if (y4 > rightmargin) {
             max_right = rightmargin
         } else {
             max_right = y4
         }
-        line(x4, y4, max_right, bottommargin)
+        // Points
+        // strokeWeight(5)
+        // point(x1, y1)
+        // point(x2, y2)
+        // point(x3, y3)
+        // point(x4, y4)
+        line(x3, y3, rightmargin, y3)
+        line(x2, bottommargin, x2, y2)
+
+        // vertical curves
+        // line(x2 * 1.2, bottommargin, x2 * 1.2, y2)
+
+        // Option 1
+        // line(leftmargin, x1, x1, y1)
+        // line(x4, y4, max_right, bottommargin)
 
         // Option 2
         // line(x1, y1)

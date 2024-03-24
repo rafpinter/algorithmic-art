@@ -89,14 +89,17 @@ function bezier_func(l) {
         // Option 1
         // line(x2, windowWidth, x2, y2)
         // line(x3, y3, windowHeight, y3)
-        line(leftmargin, x1, x1, y1)
+        // line(leftmargin, x1, x1, y1)
+        // line(x1, y1, x1, leftmargin)
         let max_right
         if (y4 > rightmargin) {
             max_right = rightmargin
         } else {
             max_right = y4
         }
-        line(x4, y4, max_right, bottommargin)
+        // line(x4, y4, max_right, bottommargin)
+        // line(x3, y3, rightmargin, y3)
+        // line(x2, bottommargin, x2, y2)
 
         // Option 2
         // line(x1, y1)
