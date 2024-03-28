@@ -28,7 +28,7 @@ let i = 100
 
 // playground!!
 let offset = 100
-let noise_speed = 0.0055
+let noise_speed = 0.007
 
 // Animation variables
 var pause = true
@@ -77,7 +77,6 @@ function bezier_func() {
 
     // Constructing Bezier curves with the points
     bezier(x1, y1, x2, y2, x3, y3, x4, y4)
-    // What happens if we see only the bezier curves?
 
     // Adding straight line to an end of the Beziers
     line(leftmargin, topmargin, x1, y1)
@@ -100,8 +99,6 @@ function bezier_func() {
     // In the original work, I also desabled the javascript loops, 
     // so the screen is not refreshed
     // noLoop()
-
-    // Now let's play with the code
 }
 
 
