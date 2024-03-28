@@ -25,11 +25,10 @@ let j4 = 100
 let i = 100
 
 // playground!!
-let offset = 100
+let offset = 10
 let noise_speed = 0.0055
 
 // Animation variables
-let steps = 150
 var pause = true
 
 
@@ -62,6 +61,9 @@ function bezier_func() {
     strokeWeight(2) // Weight of the line
 
     // Adding randomness to the points
+    // In the original work, I "automatically" created all the lines with a "for" loop:
+    // for (let j = 0; j < steps; j++) {
+    // but here I'm showing one by one
     x1 = (noise(offset + i) * width + j1)
     y1 = (noise(offset + i + 2) * height + j1)
     x2 = (noise(offset + i + 3) * width + j2)
@@ -88,15 +90,22 @@ function bezier_func() {
 
     // Shift!!!!! Motion!!!!!
     offset += noise_speed
+
+    // End of "for" in the original work
+    // }
+    // In the original work, I also desabled the javascript loops, 
+    // so the screen is not refreshed
+    // noLoop()
 }
 
 
 // Pause/play interactivity
 function mousePressed() {
+    // If it's paused, we should play it
     if (pause == false) {
         noLoop()
         pause = true
-    } else {
+    } else { // If it's playing, we should pause
         loop()
         pause = false
     }
