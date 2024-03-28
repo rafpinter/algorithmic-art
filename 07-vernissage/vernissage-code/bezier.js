@@ -3,14 +3,10 @@
 References:
 https://www.youtube.com/watch?v=uctX1P3H3xM
 https://editor.p5js.org/PeterQwertz/sketches/Mh7aSsyMl
-// https://github.com/rethread-studio/algorithmic-art-course/blob/main/examples/template-p5-to-svg.html
-
-
-vec_of_bezier_lines = [...,...,...]
-new_point = point
-vec_of_bezier_lines[i % len(vec)] = new_point
+https://github.com/rethread-studio/algorithmic-art-course/blob/main/examples/template-p5-to-svg.html
 */
 
+// Screen variables
 var w
 var h
 var rightmargin
@@ -20,20 +16,26 @@ var bottommargin
 var actualwidth
 var actualheight
 
-// playground
+// Main variables
 let x1, y1, x2, y2, x3, y3, x4, y4
-let i = 100
-let offset = 2
-let noise_speed = 0.006
 let j1 = -100
 let j2 = -100
 let j3 = 100
 let j4 = 100
+let i = 100
 
+// playground!!
+let offset = 100
+let noise_speed = 0.0055
+
+// Animation variables
 let steps = 150
-var pause = false
+var pause = true
 
+
+// Configuration of the canvas
 function setup() {
+    // Adjusting margins
     w = windowWidth
     h = windowHeight
     rightmargin = 0.9 * w
@@ -47,15 +49,19 @@ function setup() {
     mousePressed()
 }
 
+// Drawing on the canvas
 function draw() {
     bezier_func()
-    // noLoop()
 }
 
+// My bezier function
 function bezier_func() {
-    noFill()
-    strokeWeight(1.5)
+    // Configuration of the lines
+    noFill() // No filling color 
+    stroke(255) // Color of the line. 255 = white
+    strokeWeight(2) // Weight of the line
 
+    // Adding randomness to the points
     x1 = (noise(offset + i) * width + j1)
     y1 = (noise(offset + i + 2) * height + j1)
     x2 = (noise(offset + i + 3) * width + j2)
@@ -65,21 +71,27 @@ function bezier_func() {
     x4 = (noise(offset + i + 7) * width + j4)
     y4 = (noise(offset + i + 8) * height + j4)
 
-    stroke(255)
+    // Constructing Bezier curves with the points
     bezier(x1, y1, x2, y2, x3, y3, x4, y4)
+
+    // Adding straight line to an end of the Beziers
     line(leftmargin, x1, x1, y1)
+    // But watching out for the margins
     let max_right
     if (y4 > rightmargin) {
         max_right = rightmargin
     } else {
         max_right = y4
     }
+    // Adding another line to another end of the Beziers
     line(x4, y4, max_right, bottommargin)
 
-
+    // Shift!!!!! Motion!!!!!
     offset += noise_speed
 }
 
+
+// Pause/play interactivity
 function mousePressed() {
     if (pause == false) {
         noLoop()
