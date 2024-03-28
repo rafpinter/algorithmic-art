@@ -16,9 +16,26 @@ vec_of_bezier_lines[i % len(vec)] = new_point
 //which gives this width and height for a letter format paper
 //w=96*8.5=816
 //h=96*11=1056
+
+let a3 = [
+    11.693,
+    16.535
+]
+let letter = [
+    8.5,
+    11
+]
+
+let small_paper = [
+    5.5,
+    5.5
+]
+
+let paper = small_paper
+
 var echelle = 1
-var w = 816 * echelle
-var h = 1056 * echelle
+var w = paper[0] * 96 * echelle
+var h = paper[1] * 96 * echelle
 //I suggest to keep a bit of white space on the sides of page when plotting.
 //so plot within the area leftmargin - rightmargin on the x-axis and topmargin - bottommargin on the y axis
 var rightmargin = 0.9 * w
@@ -30,65 +47,56 @@ var actualheight = bottommargin - topmargin
 
 // playground
 let x1, y1, x2, y2, x3, y3, x4, y4
-let i = 30
+let i = 100
 let offset = 1
-let speed = 0.007
+let speed = 0.01
 let j1 = -100
 let j2 = -100
 let j3 = 100
 let j4 = 100
 
-let steps = 100
+let steps = 50
 
 function setup() {
     createCanvas(w, h, SVG)
-    background(255)
+    // background(255)
+    clear()
+    noLoop()
 }
 
 function draw() {
-    background(255)
-
-    // Tests:
-    call_bezier(1)
+    //draw
+    bezier_func(1)
     // save
     let button = createButton('SAVE SVG')
     button.position(w + 30, actualheight)
     button.mousePressed(save_svg)
+
+    draw_text()
 }
 
 function save_svg() {
-    save("mySVG.svg")
+    save("v1.svg")
 }
 
 function bezier_func(l) {
-
     noFill()
-    strokeWeight(1)
-
-    let k = 1;
+    strokeWeight(1.5)
 
     for (let j = 0; j < steps; j++) {
-        stroke(200, 200, 0)
+
+        stroke(5, 171, 190)
         x1 = (noise(offset + i) * width + j1) * l
-        y1 = (noise(offset + i * 2) * height + j1) * l
-        x2 = (noise(offset + i * 3) * width + j2) * l
-        y2 = (noise(offset + i * 4) * height + j2) * l
-        x3 = (noise(offset + i * 5) * width + j3) * l
-        y3 = (noise(offset + i * 6) * height + j3) * l
-        x4 = (noise(offset + i * 7) * width + j4) * l
-        y4 = (noise(offset + i * 8) * height + j4) * l
+        y1 = (noise(offset + i + 2) * height + j1) * l
+        x2 = (noise(offset + i + 3) * width + j2) * l
+        y2 = (noise(offset + i + 4) * height + j2) * l
+        x3 = (noise(offset + i + 5) * width + j3) * l
+        y3 = (noise(offset + i + 6) * height + j3) * l
+        x4 = (noise(offset + i + 7) * width + j4) * l
+        y4 = (noise(offset + i + 8) * height + j4) * l
 
         bezier(x1, y1, x2, y2, x3, y3, x4, y4)
 
-        // Points
-        // point(x1, y1)
-        // point(x2, y2)
-        // point(x3, y3)
-        // point(x4, y4)
-
-        // Option 1
-        // line(x2, windowWidth, x2, y2)
-        // line(x3, y3, windowHeight, y3)
         line(leftmargin, x1, x1, y1)
         let max_right
         if (y4 > rightmargin) {
@@ -96,29 +104,52 @@ function bezier_func(l) {
         } else {
             max_right = y4
         }
+
         line(x4, y4, max_right, bottommargin)
-
-        // Option 2
-        // line(x1, y1)
-        // line(x4, y4, 700, 900)
-
-        // Option 3
-        // line(x1, y1, x2, y2)
-        // line(x2, y2, x3, y3)
-        // line(x3, y3, x4, y4)
 
         offset += speed
     }
-    noLoop()
 }
 
+function draw_text() {
+    stroke(5, 171, 190)
 
-function call_bezier(l) {
-    if (l < 1) {
-        return
+    let myFont
+
+    myFont = loadFont('/Users/rafaelapinter/Library/Mobile Documents/com~apple~CloudDocs/1.UdeM/github-projects/algorithmic-art/07-vernissage/fonts/1CamBam_Stick_2.ttf')
+    textFont(myFont)
+    textSize(32)
+    text(`
+    function bezier_func(l) {
+        noFill()
+        strokeWeight(1.5)
+        for (let j = 0; j < steps; j++) {
+            stroke(5, 171, 190)
+            x1 = (noise(offset + i) * width + j1) * l
+            y1 = (noise(offset + i + 2) * height + j1) * l
+            x2 = (noise(offset + i + 3) * width + j2) * l
+            y2 = (noise(offset + i + 4) * height + j2) * l
+            x3 = (noise(offset + i + 5) * width + j3) * l
+            y3 = (noise(offset + i + 6) * height + j3) * l
+            x4 = (noise(offset + i + 7) * width + j4) * l
+            y4 = (noise(offset + i + 8) * height + j4) * l
+            bezier(x1, y1, x2, y2, x3, y3, x4, y4)
+            let max_right
+            if (y4 > rightmargin) {
+                max_right = rightmargin
+            } else {
+                max_right = y4
+            }
+            // 1
+            line(leftmargin, x1, x1, y1)
+            line(x4, y4, max_right, bottommargin)
+            // 2
+            line(x3, y3, rightmargin, y3)
+            line(x2, bottommargin, x2, y2)
+            // 3
+            // repeat
+            offset += speed
+        }
     }
-    else {
-        bezier_func(l)
-        call_bezier(l / 2)
-    }
+    `, 200, 900, 300)
 }
