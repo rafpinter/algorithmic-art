@@ -28,7 +28,7 @@ let i = 100
 
 // playground!!
 let offset = 100
-let noise_speed = 0.007
+let noise_speed = 0.01
 
 // Animation variables
 var pause = true
