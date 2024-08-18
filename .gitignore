@@ -6,3 +6,6 @@ p5/
 07-vernissage/references/
 07-vernissage/imgs/
 *.ttf
+*.ipynb
+*.pdf
+*.zip
