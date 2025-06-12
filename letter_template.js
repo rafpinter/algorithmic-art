@@ -27,17 +27,6 @@ var bottommargin = 0.9 * h
 var actualwidth = rightmargin - leftmargin
 var actualheight = bottommargin - topmargin
 
-// playground
-let x1, y1, x2, y2, x3, y3, x4, y4
-let i = 8
-let offset = 100
-let speed = 0.01
-let j1 = -100
-let j2 = -100
-let j3 = 100
-let j4 = 100
-
-let steps = 100
 
 function setup() {
     createCanvas(w, h, SVG)
@@ -45,12 +34,7 @@ function setup() {
 }
 
 function draw() {
-    background(255)
-
-    // Tests:
-    call_bezier(1)
-
-
+    // Call functions to plot
 
     // save button
     let button = createButton('SAVE SVG')
