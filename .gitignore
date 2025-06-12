@@ -9,3 +9,5 @@ p5/
 *.ipynb
 *.pdf
 *.zip
+*.svg
+*.png

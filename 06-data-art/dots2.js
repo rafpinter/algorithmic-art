@@ -24,7 +24,7 @@ let Y = 450
 
 // Canvas
 let only_song_dots = false
-let lines = true
+let lines = false
 let white_mode = true
 
 // Randomness

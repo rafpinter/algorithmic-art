@@ -27,8 +27,8 @@ let letter = [
 ]
 
 let small_paper = [
-    5.5,
-    5.5
+    10,
+    10
 ]
 
 let paper = small_paper
@@ -47,9 +47,9 @@ var actualheight = bottommargin - topmargin
 
 // playground
 let x1, y1, x2, y2, x3, y3, x4, y4
-let i = 100
+let i = 1000
 let offset = 1
-let speed = 0.01
+let speed = 0.014
 let j1 = -100
 let j2 = -100
 let j3 = 100

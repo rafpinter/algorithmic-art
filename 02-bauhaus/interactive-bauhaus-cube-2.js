@@ -48,17 +48,13 @@ let form_sep = 1.01;
 
 // Objects Randomness
 let random_sizes = true;
-let inc_limit = 70;
+let inc_limit = 50;
 let random_stroke = true;
 let random_objects = false;
 let object_number = 0; // Square:0 | Circle:1 | Triangle:2
 
 // Hidden objects
 let max_random_number = 5;
-
-
-// Canvas variables 
-// ---------------
 
 // Text
 let add_text = false;
@@ -69,46 +65,18 @@ let r = 237;
 let g = 237;
 let b = 237;
 
-var cube;
-let a3 = [
-    11.693,
-    16.535
-]
-let letter = [
-    8.5,
-    11
-]
-
-let paper = a3
-
-var echelle = 1
-var w = paper[0] * 96 * echelle
-var h = paper[1] * 96 * echelle
-
-let wd = w;
-let ht = h;
+// Canvas variables 
+// ---------------
+let wd = 800;
+let ht = 900;
 let color_array = [];
 let sq_size = (wd - ext_space * 2 - int_space * (dim_cube - 1)) / dim_cube;
-var rightmargin = 0.9 * w
-var leftmargin = 0.1 * w
-var topmargin = 0.1 * h
-var bottommargin = 0.9 * h
-var actualwidth = rightmargin - leftmargin
-var actualheight = bottommargin - topmargin
-
-
-let font; // Declare a global variable for the font
-
-function preload() {
-    // Load the font in the preload function to ensure it's ready before setup
-    font = loadFont("./fonts/1CAMBam_Stick_9.ttf");
-}
-
+var cube;
 
 
 // Setup function
 function setup() {
-    createCanvas(w, h, SVG)
+    createCanvas(wd, ht);
     noLoop();
 
     // Probabilistic colors
@@ -132,14 +100,6 @@ function setup() {
         round_edges,
         color_array,
         sq_size);
-
-    let button = createButton('SAVE SVG')
-    button.position(w + 30, actualheight)
-    button.mousePressed(save_svg)
-}
-
-function save_svg() {
-    save("sq.svg")
 }
 
 // Draw function
@@ -160,59 +120,32 @@ function draw() {
     txtBottom();
 }
 
-// function txtBottom() {
-//     // Font
-//     font = loadFont("./fonts/1CAMBam_Stick_9.ttf")
-//     textFont(font);
-
-//     if (add_text) {
-//         // Control dark mode colors
-//         if (mode == "dark") {
-//             cor = 200;
-//         } else {
-//             cor = 30;
-//         }
-//         push();
-//         // Line
-//         translate(0, ht * 0.875);
-//         stroke(cor);
-//         strokeWeight(ht * 0.005);
-//         strokeCap(SQUARE);
-//         line(100, 0, 700, 0)
-//         noStroke();
-
-//         // Text
-//         fill(cor, cor, cor, 255);
-//         textAlign(100);
-//         textSize(ht * 0.025);
-//         text("is it already bauhaus?", 100, ht * 0.031);
-//         pop();
-//     }
-// }
-
 function txtBottom() {
+    // Font
+    font = "Raleway";
+    textFont(font);
+
     if (add_text) {
-        // Font setup
-        textFont(font);
-
         // Control dark mode colors
-        let cor = mode === "dark" ? 200 : 30;
-
+        if (mode == "dark") {
+            cor = 200;
+        } else {
+            cor = 30;
+        }
         push();
-        translate(0, ht * 0.875);
-
         // Line
+        translate(0, ht * 0.875);
         stroke(cor);
         strokeWeight(ht * 0.005);
         strokeCap(SQUARE);
-        line(100, 0, 1000, 0);
+        line(100, 0, 700, 0)
         noStroke();
 
         // Text
-        fill(cor);
-        textAlign(LEFT); // Align text to the left
+        fill(cor, cor, cor, 255);
+        textAlign(100);
         textSize(ht * 0.025);
-        text("bauhaus?", 100, ht * 0.031);
+        text("is it already bauhaus?", 100, ht * 0.031);
         pop();
     }
 }
