@@ -2,6 +2,6 @@
 
 a repo dedicated to algorithmic art
 
-what started as a [class at UdeM](https://github.com/rethread-studio/algorithmic-art-course), now continues freely
+it all started as a [class at UdeM](https://github.com/rethread-studio/algorithmic-art-course)
 
 pode entrar, mas não repara a bagunça 
