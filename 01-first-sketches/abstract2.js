@@ -43,4 +43,6 @@ function draw() {
     line(c, h, f, g);
     line(c, h, i, j);
     noLoop();
+
+
 }

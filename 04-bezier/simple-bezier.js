@@ -37,5 +37,7 @@ function draw() {
         ctrlx2, ctrly2,
         ancx2, ancy2
     );
+
+    
 }
 
