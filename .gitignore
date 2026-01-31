@@ -11,3 +11,8 @@ p5/
 *.zip
 *.svg
 *.png
+
+*.gcode
+
+node*
+*.txt

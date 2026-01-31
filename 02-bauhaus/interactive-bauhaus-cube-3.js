@@ -24,14 +24,14 @@ Rafaela Pinter
 // Playground variables
 // --------------------
 // Cube dimensions
-let dim_cube = 5;
+let dim_cube = 75
 
 // Objects Grid
-let ext_space = 120;
-let int_space = 0;
+let ext_space = 100;
+let int_space = 10;
 
 // Objects perimeter
-let round_edges = 0;
+let round_edges = 50;
 let no_stroke = false;
 let stroke_weight = 1;
 let stroke_color = 0;
@@ -42,28 +42,28 @@ let no_fill = true;
 
 // Objects repetition
 let max_forms_square = 10;
-let max_forms_triangle = 120;
-let max_forms_circles = 100;
-let form_sep = 1.1;
+let max_forms_triangle = 10;
+let max_forms_circles = 10;
+let form_sep = 1.01;
 
 // Objects Randomness
 let random_sizes = true;
-let inc_limit = 100;
+let inc_limit = 50;
 let random_stroke = true;
-let random_objects = true;
-let object_number = 1; // Square:0 | Circle:1 | Triangle:2
+let random_objects = false;
+let object_number = 0; // Square:0 | Circle:1 | Triangle:2
 
 // Hidden objects
-let max_random_number = 1;
+let max_random_number = 5;
 
 // Text
 let add_text = false;
 
 // Background
 let mode = "white";
-let r = 255;
-let g = 255;
-let b = 255;
+let r = 237;
+let g = 237;
+let b = 237;
 
 // Canvas variables 
 // ---------------
@@ -72,47 +72,6 @@ let ht = 900;
 let color_array = [];
 let sq_size = (wd - ext_space * 2 - int_space * (dim_cube - 1)) / dim_cube;
 var cube;
-
-var topmargin = 0.1 * ht
-var bottommargin = 0.9 * ht
-var leftmargin = 0.1 * wd
-var rightmargin = 0.9 * wd
-
-var actualwidth = rightmargin - leftmargin
-var actualheight = bottommargin - topmargin
-
-
-let divs = dim_cube
-let y_step = actualheight / divs
-let x_step = actualwidth / divs
-let y_mid = y_step / 2
-let x_mid = x_step / 2
-
-
-let numbers = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-    20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
-    30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
-    40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
-    50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
-    60, 61, 62, 63, 64, 65, 66, 67, 68, 69,
-    70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
-    80, 81, 82, 83, 84, 85, 86, 87, 88, 89,
-    90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
-]
-
-let y_coords = []
-let x_coords = []
-
-let max_elements = 100
-let shift = 0
-let element
-let x_elem
-let y_elem
-let display_shift = 1
-
-const randomItem = arr => arr.splice((Math.random() * arr.length) | 0, 1);
 
 
 // Setup function
@@ -126,31 +85,13 @@ function setup() {
         color(21, 64, 132, transp), // blue
         color(215, 180, 24, transp), // yellow
         color(237, 237, 237, transp), // white
-        color(237, 237, 237, transp), // white
-        color(237, 237, 237, transp), // white
-        color(237, 237, 237, transp), // white
-        color(34, 34, 34, transp), // black
-        color(249, 91, 19, transp), // orange
-        color(245, 245, 245), // white no transp
+        // color(237, 237, 237, transp), // white
+        // color(237, 237, 237, transp), // white
+        // color(237, 237, 237, transp), // white
+        // color(34, 34, 34, transp), // black
+        // color(249, 91, 19, transp), // orange
+        // color(245, 245, 245), // white no transp
     ];
-
-    //     color_array = [
-    //     color(random(0,255), random(0,255), random(0,255), transp), // red
-    //     color(random(0,255), random(0,255), random(0,255), transp), // blue
-    //     color(random(0,255), random(0,255), random(0,255), transp), // yellow
-    //     color(random(0,255), random(0,255), random(0,255), transp), // white
-    //     color(random(0,255), random(0,255), random(0,255), transp), // white
-    //     color(random(0,255), random(0,255), random(0,255), transp), // white
-    //     color(random(0,255), random(0,255), random(0,255), transp), // white
-    //     color(random(0,255), random(0,255), random(0,255), transp), // black
-    //     color(random(0,255), random(0,255), random(0,255), transp), // orange
-    //     color(random(0,255), random(0,255), random(0,255)), // white no transp
-    // ];
-
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    fill(0); // Black text color
-
 
     cube = new Cube(
         dim_cube,
@@ -177,23 +118,6 @@ function draw() {
         cube.objects[i].display();
     }
     txtBottom();
-
-    for (let y = topmargin; y <= bottommargin; y = y + y_step) {
-        for (let x = leftmargin; x <= rightmargin; x = x + x_step) {
-        // point(x, y)
-        x_elem = x + random(-shift,shift)
-        y_elem = y + random(-shift,shift)
-        if (!(y == (topmargin + (2 * y_step)) && x == (leftmargin + (2 * x_step)))){
-            element = randomItem(numbers)
-            if (x < rightmargin && y < bottommargin){
-                fill(0)
-                text(element, x_elem + x_mid, y_elem + y_mid)
-                }
-            }
-        y_coords.push(y_elem)
-        x_coords.push(x_elem)
-        }
-    }
 }
 
 function txtBottom() {
