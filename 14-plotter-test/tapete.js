@@ -86,45 +86,44 @@ function save_svg() {
 function art() {
     // axis()
     stroke(100, 0, 0)
-    strokeWeight(2)
+    strokeWeight(1)
 
-    let step = 15
+    let step = 3
     let size = 30
 
     let x1_noise
     let y1_noise
 
+    let noiseLevel = 255;
+    let noiseScale = 0.01;
+
     let center_x = (leftmargin + rightmargin) / 2
     let center_y = (topmargin + bottommargin) / 2
-    let color_drift;
+    let color_drift
 
+    // for (let x1 = leftmargin; x1 < rightmargin; x1 += step){
+    //     for (let y1 = topmargin; y1 < bottommargin; y1 += step) {
 
-    for (let x1 = leftmargin; x1 < rightmargin; x1 += step){
-        for (let y1 = topmargin; y1 < bottommargin; y1 += step) {
+    for (let x1 = -50; x1 < w + 50; x1 += step){
+        for (let y1 = -50; y1 < h + 50; y1 += step) {
         
+            
             x1_noise = x1 + size * noise(x1, y1)
             y1_noise = y1 + size * noise(x1, y1)
 
-            if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) < 250){
+            if (int(random(1,5)) == 3){
                 color_drift = int(random(1,100))
                 stroke(200, color_drift, 0)
-                line(
-                    x1, y1, 
-                    x1_noise, y1_noise
+                let nx = noiseScale * x1;
+                let ny = noiseScale * y1;
+                let c = noiseLevel * noise(nx, ny);
+                noFill()
+                circle(
+                    x1, y1, c
                 )
             }
-
-            if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) > 280){
-                if (int(random(2,4)) == 3){
-                    
-                    noFill()
-                    point(
-                        x1, y1
-                    )
-                }
-            }
-
         }
     }
 }
+
 

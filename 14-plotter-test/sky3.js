@@ -86,45 +86,57 @@ function save_svg() {
 function art() {
     // axis()
     stroke(100, 0, 0)
-    strokeWeight(2)
+    strokeWeight(1)
 
-    let step = 15
+    let step = 3
     let size = 30
 
     let x1_noise
     let y1_noise
 
+    let noiseLevel = 10;
+    let noiseScale = 0.01;
+
     let center_x = (leftmargin + rightmargin) / 2
     let center_y = (topmargin + bottommargin) / 2
-    let color_drift;
-
+    let color_drift
 
     for (let x1 = leftmargin; x1 < rightmargin; x1 += step){
         for (let y1 = topmargin; y1 < bottommargin; y1 += step) {
-        
+
             x1_noise = x1 + size * noise(x1, y1)
             y1_noise = y1 + size * noise(x1, y1)
 
-            if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) < 250){
-                color_drift = int(random(1,100))
-                stroke(200, color_drift, 0)
-                line(
-                    x1, y1, 
-                    x1_noise, y1_noise
-                )
-            }
 
-            if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) > 280){
-                if (int(random(2,4)) == 3){
+                if (int(random(1,5)) == 3){
+                    color_drift = int(random(1,100))
+                    stroke(0, color_drift, 200)
+                    fill(0, color_drift, 200)
                     
-                    noFill()
-                    point(
-                        x1, y1
-                    )
+                    let nx = noiseScale * x1;
+                    let ny = noiseScale * y1;
+                    
+                    let c = noiseLevel * noise(nx, ny);
+                    strokeWeight(c)
+
+                    if (int(random(1,c+4)) == 1){
+                        point(
+                            x1, y1
+                        )
+                    }
                 }
             }
-
         }
-    }
+
+    let circle_size = 200
+    stroke(200, 100, 0)
+    fill(200, 100, 0)
+    circle(
+        random(leftmargin + circle_size, rightmargin - circle_size), 
+        random(topmargin + circle_size, bottommargin - circle_size), 
+        circle_size
+    )
+
 }
+
 

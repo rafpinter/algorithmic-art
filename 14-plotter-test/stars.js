@@ -59,7 +59,7 @@ var actualheight = bottommargin - topmargin
 
 function setup() {
     createCanvas(w, h, SVG)
-    background(10, 10, 20)
+    // background(10, 10, 20)
 }
 
 function draw() {
@@ -80,13 +80,13 @@ function draw() {
 
 function save_svg() {
     let timestamp = Date.now()
-    save(`sky_${timestamp}.svg`)
+    save(`stars_${timestamp}.svg`)
 }
 
 function art() {
     // axis()
     stroke(100, 0, 0)
-    strokeWeight(2)
+    strokeWeight(5)
 
     let step = 15
     let size = 30
@@ -105,14 +105,14 @@ function art() {
             x1_noise = x1 + size * noise(x1, y1)
             y1_noise = y1 + size * noise(x1, y1)
 
-            if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) < 250){
-                color_drift = int(random(1,100))
-                stroke(200, color_drift, 0)
-                line(
-                    x1, y1, 
-                    x1_noise, y1_noise
-                )
-            }
+            // if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) < 250){
+            //     color_drift = int(random(1,100))
+            //     stroke(200, color_drift, 0)
+            //     line(
+            //         x1, y1, 
+            //         x1_noise, y1_noise
+            //     )
+            // }
 
             if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) > 280){
                 if (int(random(2,4)) == 3){

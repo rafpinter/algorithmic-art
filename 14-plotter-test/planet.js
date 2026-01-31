@@ -59,7 +59,7 @@ var actualheight = bottommargin - topmargin
 
 function setup() {
     createCanvas(w, h, SVG)
-    background(10, 10, 20)
+    // background(10, 10, 20)
 }
 
 function draw() {
@@ -80,7 +80,7 @@ function draw() {
 
 function save_svg() {
     let timestamp = Date.now()
-    save(`sky_${timestamp}.svg`)
+    save(`planet_${timestamp}.svg`)
 }
 
 function art() {
@@ -114,15 +114,15 @@ function art() {
                 )
             }
 
-            if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) > 280){
-                if (int(random(2,4)) == 3){
+            // if (Math.sqrt(Math.pow(x1 - center_x, 2) + Math.pow(y1 - center_y, 2)) > 280){
+            //     if (int(random(2,4)) == 3){
                     
-                    noFill()
-                    point(
-                        x1, y1
-                    )
-                }
-            }
+            //         noFill()
+            //         point(
+            //             x1, y1
+            //         )
+            //     }
+            // }
 
         }
     }
