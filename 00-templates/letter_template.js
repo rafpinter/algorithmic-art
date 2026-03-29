@@ -34,9 +34,16 @@ function setup() {
 }
 
 function draw() {
-    // Call functions to plot
-
-    // save button
+    // draw
+    // Clip to canvas boundaries
+    drawingContext.save()
+    drawingContext.beginPath()
+    drawingContext.rect(0, 0, w, h)
+    drawingContext.clip()
+    art()
+    drawingContext.restore()
+    noLoop()
+    // save
     let button = createButton('SAVE SVG')
     button.position(w + 30, actualheight)
     button.mousePressed(save_svg)
@@ -44,4 +51,8 @@ function draw() {
 
 function save_svg() {
     save("svg-file.svg")
+}
+
+function art() {
+    
 }
