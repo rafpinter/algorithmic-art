@@ -12,8 +12,12 @@ let marcapagina = [2, 6];
 
 // ---------------------------
 // Choose paper and margin
+// ---------------------------
 let paper = deserres;
-let margin_perc = 0;
+let margin_perc = 0.1;
+
+// ---------------------------
+// Common set up
 // ---------------------------
 
 const SKETCH_NAME =
@@ -21,7 +25,7 @@ const SKETCH_NAME =
 
 let echelle = 1;
 let resolution = 96;
-let w = paper[0] * resolution * echelle; // 871
+let w = paper[0] * resolution * echelle; // 869,76
 let h = paper[1] * resolution * echelle; // 1152
 
 // Useful variables for plotting
@@ -33,7 +37,7 @@ let actualwidth = rightmargin - leftmargin;
 let actualheight = bottommargin - topmargin;
 let center_x = w / 2;
 let center_y = h / 2;
-
+let x_y_prop = paper[0] / paper[1];
 let monoFont;
 
 function preload() {
@@ -43,11 +47,9 @@ function preload() {
 function setup() {
   let cnv = createCanvas(w, h, SVG);
   cnv.style("background", "white");
-
   let button = createButton("SAVE SVG");
   button.position(w + 30, actualheight);
   button.mousePressed(save_svg);
-
   noLoop();
 }
 
@@ -56,9 +58,7 @@ function draw() {
   drawingContext.beginPath();
   drawingContext.rect(0, 0, w, h);
   drawingContext.clip();
-
   art();
-
   drawingContext.restore();
 }
 
@@ -66,45 +66,105 @@ function save_svg() {
   save(`${SKETCH_NAME}.svg`);
 }
 
+function draw_text(txt_str, txt_size, txt_x, txt_y) {
+    push();
+    stroke(0);
+    textSize(txt_size);
+    textLeading(100);
+    textFont(monoFont); // textFont("monospace");
+    let lines = txt_str.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+        text(preserveSvgSpaces(lines[i]), txt_x, txt_y + i * 9).replace(/\t/g, "    ").replace(/ /g, "\u00A0");
+    }
+    pop();
+}
+
 // ---------------------------
 // SKETCH
 // ---------------------------
+// playground
+let x1, y1, x2, y2, x3, y3, x4, y4
+let i = 100
+let offset = 3
+let speed
+let j1 = -100
+let j2 = -100
+let j3 = 100
+let j4 = 100
 
 function art() {
+  let n_x = 10;
+  let n_y = Math.ceil(n_x / x_y_prop);
 
-    line(leftmargin, 950, rightmargin, 950)
-    // line(center_x + 55, bottommargin, center_x + 55, 0)
+  let step_x = actualwidth / n_x;
+  let step_y = actualheight / n_y;
 
-    draw_text();
-}
+  stroke(0);
+  noFill();
 
-// Replace normal spaces with non-breaking spaces so SVG keeps indentation
-function preserveSvgSpaces(line) {
-  return line
-    .replace(/\t/g, "    ")
-    .replace(/ /g, "\u00A0");
-}
-
-function draw_text() {
-    push();
-    stroke(0);
-    textSize(18);
-    textLeading(100);
-
-    if (monoFont) {
-    textFont(monoFont);
-    } else {
-    textFont("monospace");
+    // vertical lines
+    for (let x = leftmargin; x <= rightmargin; x += step_x) {
+        line(x, topmargin, x, bottommargin);
     }
 
-    let code = `testando 1 2`;
-
-    let lines = code.split("\n");
-    let x = 10;
-    let y = random(500,1200);
-
-    for (let i = 0; i < lines.length; i++) {
-        text(preserveSvgSpaces(lines[i]), x, y + i * 9);
+    // horizontal lines
+    for (let y = topmargin; y <= bottommargin; y += step_y) {
+        line(leftmargin, y, rightmargin, y);
     }
-    pop();
+
+    let choice = random([5])
+    let r1 = random(0, 255)
+    let r2 = random(0, 255)
+    let g1 = random(0, 255)
+    let g2 = random(0, 255)
+    let b1 = random(0, 255)
+    let b2 = random(0, 255)
+    // speed = random(0.003, 0.007)
+    speed = random(0.005, 0.02)
+    steps = random(10, 10)
+
+    for (let j = 0; j < steps; j++) {
+
+
+    x1 = (noise(offset + i)     * width     + j1)
+    y1 = (noise(offset + i + 2) * height    + j1)
+    x2 = (noise(offset + i + 3) * width     + j2)
+    y2 = (noise(offset + i + 4) * height    + j2)
+    x3 = (noise(offset + i + 5) * width     + j3)
+    y3 = (noise(offset + i + 6) * height    + j3)
+    x4 = (noise(offset + i + 7) * width     + j4)
+    y4 = (noise(offset + i + 8) * height    + j4)
+
+    if (choice == 0) {
+        stroke(r1, b1, g1)
+        bezier(x1, y1, x2, y2, x3, y3, x4, y4)
+        line(leftmargin, x1, x1, y1)
+        let max_right
+        if (y4 > rightmargin) {
+            max_right = rightmargin
+        } else {
+            max_right = y4
+        }
+        line(x4, y4, max_right, bottommargin)
+    }
+    else if (choice == 1) {
+        stroke(r1, g1, b1)
+        bezier(x1, y1, x2, y2, x3, y3, x4, y4)
+        stroke(r2, g2, b2)
+        // line(x3, y3, rightmargin, y3)
+        // line(x2, bottommargin, x2, y2)
+    }
+    else if (choice == 3) {
+        x1 = (noise(offset + i)     * width     + j1    + random(0,300))
+        y1 = (noise(offset + i + 2) * height    + j1    + random(0,300))
+        x2 = (noise(offset + i + 3) * width     + j2    + random(0,300))
+        y2 = (noise(offset + i + 4) * height    + j2    + random(0,300))
+        x3 = (noise(offset + i + 5) * width     + j3    + random(0,300))
+        y3 = (noise(offset + i + 6) * height    + j3    + random(0,300))
+        x4 = (noise(offset + i + 7) * width     + j4    + random(0,300))
+        y4 = (noise(offset + i + 8) * height    + j4    + random(0,300))
+
+    }
+    offset += speed
+    }
 }
