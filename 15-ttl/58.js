@@ -45,7 +45,7 @@ var center_y = h / 2
 function setup() {
     createCanvas(w, h, SVG)
     
-    background(0)
+    // background(0)
     noLoop()
 }
 
@@ -76,14 +76,14 @@ function art() {
         midx: w / 2,
         midy: h / 2,
         numdots: 500,
-        in_rx: 200,
+        in_rx: 200, //200
         in_ry: 200,
-        out_rx: 800,
-        out_ry: 800,
-        noiseAmountX: 500,
+        out_rx: 580, // 800
+        out_ry: 580, // 800
+        noiseAmountX: 300,
         noiseAmountY: 200,
         noiseScale: 1,
-        strokeColor: [255, 255, 200],
+        strokeColor: [255, 0, 200],
         strokeW: 1
     })
     }
