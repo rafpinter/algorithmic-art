@@ -14,7 +14,7 @@ let marcapagina = [2, 6];
 // Choose paper and margin
 // ---------------------------
 let paper = deserres;
-let margin_perc = 0;
+let margin_perc = 0.1;
 
 // ---------------------------
 // Common set up
@@ -83,5 +83,5 @@ function draw_text(txt_str, txt_size, txt_x, txt_y) {
 // ---------------------------
 
 function art() {
-
+    
 }
